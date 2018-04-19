@@ -5,8 +5,11 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class BuggedMatrix extends Game {
+    public static final int HEIGHT = 480;
+    public static final int WIDTH = 800;
 	private SpriteBatch batch;
 	private AssetManager assetManager;
+    private GameStateManager gameStateManager;
 
 	public void create ()
 	{
@@ -14,6 +17,9 @@ public class BuggedMatrix extends Game {
 		assetManager = new AssetManager();
 
 		setScreen(new GameScreen(this));
+
+		gameStateManager = new GameStateManager();
+		gameStateManager.push(new MenuState(gameStateManager));
 	}
 
 	public AssetManager getAssetManager() {
