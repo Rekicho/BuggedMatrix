@@ -1,5 +1,4 @@
-
-package com.buggedmatrix.game;
+package com.buggedmatrix.game.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -13,8 +12,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.buggedmatrix.game.BuggedMatrix;
 
-public class GameScreen extends ScreenAdapter {
+public class GameView extends ScreenAdapter {
     private static final int VIEWPORT_WIDTH = 6;
     private static final float PIXEL_TO_METER = 0.22f / 200;
     private final BuggedMatrix game;
@@ -25,7 +25,7 @@ public class GameScreen extends ScreenAdapter {
     private final Body playerBody;
     private final Body groundBody;
 
-    public GameScreen(BuggedMatrix game)
+    public GameView(BuggedMatrix game)
     {
         this.game = game;
 
