@@ -24,3 +24,35 @@ Difficulty:
 Game:
 
 ![Game](https://i.imgur.com/0AM3b1d.png)
+
+## Test Design
+
+### Test Cases
+Game:
+- Creating the game and all it's assests
+- Moving the player in a direction
+- Colliding with the extern walls
+- Colliding with other object/other player
+- Shooting bullet
+- Bullet leaves gun with correct angle/position
+- Bullet/player collision detection
+- Player dying from othe player bullet
+- Player not dying from his own bullet (but still having a force apllied to the point of contact)
+- Pickup powerups/debuffs
+- Random funcionality from time to time (we intend to have something happening - a tornado, a barrel roll, etc- happening from time to time)
+- (Possibly) Use of different maps (and all playable)
+- (Possibly) Use of different player and weapon skins
+- Ignore user incorrect input
+- GameOver
+
+AI:
+- Different AI behaviours
+- Always having a movement when asked (not infinite decision time)
+- Testing ability to lose/win in different cenarios
+- Testing how hard it is to beat
+
+2nd Player:
+- Not mixing both players' movement
+- Both players are able to win
+- The game is even (both players have ~50% chance of winning)
+- (Online) Testing if both player have responses in reasonable time and that we are able to sync them
