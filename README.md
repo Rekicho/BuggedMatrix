@@ -14,6 +14,8 @@ Singleton:
 
 ![Singleton](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Singleton_UML_class_diagram.svg/1200px-Singleton_UML_class_diagram.svg.png)
 
+Used in: GameController, GameModel
+
 We can only have on game happening at each time, so it makes sense to use a singleton for each Game class
 
 Game Loop:
@@ -35,6 +37,8 @@ Allows us to separate different concerns, making it easier to make changes to ea
 Factory:
 
 ![Factory](https://upload.wikimedia.org/wikipedia/commons/4/43/W3sDesign_Factory_Method_Design_Pattern_UML.jpg)
+
+Used in: View Entity Package
 
 Code has higer abstraction and allows use to easily create and implement new map/player/weapon/bullet skins.
 
