@@ -9,11 +9,16 @@
 ![UML](https://i.imgur.com/wKLChXX.png)
 
 View: Displays information to the user. Has all menus and view from all entities.
+
 Model: Game rules and logic. It's how the game is played. Contatints the game model and all entities models.
+
 Controller: Interprets the user commands. Seperated into the game controller and different entities controllers.
+
 Networking: Will be used for online multiplayer.
+
 AI: AI decision making. Will output commands to the game controller as if it was a 2nd player.
-Test: Using the tests and structure described in **Test Design**
+
+Test: Using the tests and structure described in **Test Design**.
 
 ### Design Patterns
 
