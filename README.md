@@ -12,3 +12,15 @@
 - GameOver: The game will be a best-of-X (still to be decided) and when it ends a menu will be displayed with the otpions to play again (with the same opponent) or back to main menu.
 
 ### GUI mock-ups
+
+Main Menu:
+
+![Main Menu](https://i.imgur.com/ug52QqS.png)
+
+Difficulty:
+
+![Difficulty](https://i.imgur.com/ZWYfE8I.png)
+
+Game:
+
+![Game](https://i.imgur.com/0AM3b1d.png)
