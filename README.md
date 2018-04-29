@@ -3,7 +3,6 @@
 
 ## Architecture Design
 
-
 ### Package and class diagram
 
 ![UML](https://i.imgur.com/wKLChXX.png)
@@ -19,6 +18,12 @@ Networking: Will be used for online multiplayer.
 AI: AI decision making. Will output commands to the game controller as if it was a 2nd player.
 
 Test: Using the tests and structure described in **Test Design**.
+
+### Behavioural Aspects
+
+![Game Cycle](https://i.imgur.com/BCBk0j0.png)
+
+How the game/application will run
 
 ### Design Patterns
 
