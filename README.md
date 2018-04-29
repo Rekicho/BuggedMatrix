@@ -3,9 +3,40 @@
 
 ## Architecture Design
 
-Package and class diagram:
+
+### Package and class diagram
 
 ![UML](https://i.imgur.com/wKLChXX.png)
+
+### Design Patterns
+
+Singleton:
+
+![Singleton](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Singleton_UML_class_diagram.svg/1200px-Singleton_UML_class_diagram.svg.png)
+
+We can only have on game happening at each time, so it makes sense to use a singleton for each Game class
+
+Game Loop:
+
+![GameLoop](http://gameprogrammingpatterns.com/images/game-loop-fixed.png)
+
+Easier to develop and understand how the game runs.
+
+Model-View-Controller:
+
+![MVC](https://koenig-media.raywenderlich.com/uploads/2016/04/diagram-mvc-480x241.png)
+
+- Model: Represents the game logic, rules and physics.
+- View: Outputs the game represantion for the user to see.
+- Controller: Reads and interprets the user commands.
+
+Allows us to separate different concerns, making it easier to make changes to each one of them without collapsing the others.
+
+Factory:
+
+![Factory](https://upload.wikimedia.org/wikipedia/commons/4/43/W3sDesign_Factory_Method_Design_Pattern_UML.jpg)
+
+Code has higer abstraction and allows use to easily create and implement new map/player/weapon/bullet skins.
 
 ## GUI Design
 
