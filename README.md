@@ -1,6 +1,12 @@
 # Bugged-Matrix
 1 vs 1 Arena Shooter Game - but with bad physics and bad controls
 
+## Architecture Design
+
+Package and class diagram:
+
+![UML](https://i.imgur.com/wKLChXX.png)
+
 ## GUI Design
 
 ### Main Funcionalities
@@ -51,7 +57,7 @@ AI:
 - Testing ability to lose/win in different cenarios
 - Testing how hard it is to beat
 
-2nd Player:
+2 Player:
 - Not mixing both players' movement
 - Both players are able to win
 - The game is even (both players have ~50% chance of winning)
