@@ -18,12 +18,14 @@ public class GameModel {
     }
 
     private GameModel() {
-        playerOne = new PlayerModel(0,0);
+        playerOne = new PlayerModel(10,10);
     }
 
     public PlayerModel getPlayerOne() {
         return playerOne;
     }
 
-    //public void update(float delta){};
+    public void update(float delta) {
+
+    }
 }

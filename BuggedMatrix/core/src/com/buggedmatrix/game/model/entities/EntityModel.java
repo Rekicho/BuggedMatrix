@@ -6,10 +6,14 @@ public abstract class EntityModel {
 
     private float x;
     private float y;
+    private float size_x;
+    private float size_y;
 
     public EntityModel(float x, float y) {
         this.x = x;
         this.y = y;
+        this.size_x = size_x;
+        this.size_y = size_y;
     }
 
     public float getX() {
