@@ -7,6 +7,9 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.buggedmatrix.game.model.entities.EntityModel;
 
+import java.awt.Rectangle;
+import java.awt.geom.RectangularShape;
+
 import static com.buggedmatrix.game.view.GameView.PIXEL_TO_METER;
 
 public class EntityBody {
@@ -14,10 +17,10 @@ public class EntityBody {
     final static short PLAYER_BODY = 0x0002;
     final Body body;
 
-    public EntityBody(World world, EntityModel model) {
+    public EntityBody(World world, EntityModel model, BodyDef.BodyType type) {
 
         BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.type = type;
         bodyDef.position.set(model.getX(), model.getY());
 
         body = world.createBody(bodyDef);
@@ -46,7 +49,7 @@ public class EntityBody {
 
             if (i % 2 != 0) vertexes[i] *= -1;          // invert the y-coordinate
 
-            vertexes[i] *= PIXEL_TO_METER;              // scale from pixel to meter
+            //vertexes[i] *= PIXEL_TO_METER;              // scale from pixel to meter
         }
 
         PolygonShape polygon = new PolygonShape();

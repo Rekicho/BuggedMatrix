@@ -18,8 +18,8 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGTH;
 import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 
 public class GameView extends ScreenAdapter {
-    private static final boolean DEBUG_PHYSICS = false;
-    public final static float PIXEL_TO_METER = 0.04f;
+    private static final boolean DEBUG_PHYSICS = true;
+    public final static float PIXEL_TO_METER = 0.05f;
     private static final float VIEWPORT_WIDTH = 100;
     private final BuggedMatrix game;
     private final OrthographicCamera camera;
@@ -69,13 +69,14 @@ public class GameView extends ScreenAdapter {
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
         game.getBatch().begin();
-        drawBackground();
+        //drawBackground();
         drawEntities();
         game.getBatch().end();
 
         if (DEBUG_PHYSICS) {
             debugCamera = camera.combined.cpy();
-            debugCamera.scl(1 / PIXEL_TO_METER);
+            debugCamera.scl(1/PIXEL_TO_METER);
+            debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
         }
     }
 

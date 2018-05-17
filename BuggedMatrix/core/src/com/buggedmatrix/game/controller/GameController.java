@@ -5,10 +5,14 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.buggedmatrix.game.controller.entities.PlayerBody;
+import com.buggedmatrix.game.controller.entities.WallBody;
 import com.buggedmatrix.game.model.GameModel;
 import com.buggedmatrix.game.model.entities.EntityModel;
 
@@ -16,19 +20,38 @@ public class GameController implements ContactListener{
 
     private static GameController instance;
 
-    public static final int MATRIX_WIDTH = 100;
-    public static final int MATRIX_HEIGTH = 50;
+    public static final float MATRIX_WIDTH = 100;
+    public static final float MATRIX_HEIGTH = 75;
 
-    private static final float GRAVITY = -10f;
+    private static final float GRAVITY = -40f;
 
     private final World world;
 
     private final PlayerBody playerBody;
 
+    private final WallBody leftWall;
+
+
+    private final WallBody rightWall;
+
+    private final WallBody floorWall;
+
+    private final WallBody ceelingWall;
+
+
     private GameController() {
         world = new World(new Vector2(0, GRAVITY), true);
 
         playerBody = new PlayerBody(world, GameModel.getInstance().getPlayerOne());
+
+        leftWall = new WallBody(world, GameModel.getInstance().getLeftWall(), 'l');
+
+        rightWall = new WallBody(world, GameModel.getInstance().getRightWall(), 'r');
+
+        floorWall = new WallBody(world, GameModel.getInstance().getFloorWall(), 'f');
+
+        ceelingWall = new WallBody(world, GameModel.getInstance().getCeelingWall(), 'c');
+
 
         world.setContactListener(this);
     }
@@ -48,20 +71,10 @@ public class GameController implements ContactListener{
         world.getBodies(bodies);
 
         for (Body body : bodies) {
-            verifyBounds(body);
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
         }
-    }
 
-    private void verifyBounds(Body body) {
-        if (body.getPosition().x < 0)
-            body.setTransform(0, body.getPosition().y, body.getAngle());
-        if (body.getPosition().x > MATRIX_WIDTH)
-            body.setTransform(MATRIX_WIDTH, body.getPosition().y, body.getAngle());
-        if (body.getPosition().y < 0)
-            body.setTransform(body.getPosition().x, 0, body.getAngle());
-        if (body.getPosition().y > MATRIX_HEIGTH)
-            body.setTransform(body.getPosition().x, MATRIX_HEIGTH, body.getAngle());
+        world.step(delta, 6, 2);
     }
 
     public World getWorld() {
