@@ -21,7 +21,7 @@ public class GameController implements ContactListener{
     private static GameController instance;
 
     public static final float MATRIX_WIDTH = 100;
-    public static final float MATRIX_HEIGTH = 75;
+    public static final float MATRIX_HEIGTH = 50;
 
     private static final float GRAVITY = -15f;
 
@@ -49,7 +49,6 @@ public class GameController implements ContactListener{
         floorWall = new WallBody(world, GameModel.getInstance().getFloorWall(), 'f');
 
         ceelingWall = new WallBody(world, GameModel.getInstance().getCeelingWall(), 'c');
-
 
         world.setContactListener(this);
     }

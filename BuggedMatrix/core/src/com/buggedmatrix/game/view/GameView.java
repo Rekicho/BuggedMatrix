@@ -20,8 +20,8 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 
 public class GameView extends ScreenAdapter {
     private static final boolean DEBUG_PHYSICS = true;
-    public final static float PIXEL_TO_METER = 0.05f;
-    private static final float VIEWPORT_WIDTH = 100;
+    public final static float PIXEL_TO_METER = 0.04f;
+    private static final float VIEWPORT_WIDTH = 30;
     private final BuggedMatrix game;
     private final OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer;
@@ -49,7 +49,7 @@ public class GameView extends ScreenAdapter {
         OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER,VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight()/(float) Gdx.graphics.getWidth()));
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
-
+        camera.zoom += 5f;
         camera.update();
 
         if (DEBUG_PHYSICS) {
@@ -65,12 +65,15 @@ public class GameView extends ScreenAdapter {
         handleInputs(delta);
         GameController.getInstance().update(delta);
 
+        camera.update();
+        game.getBatch().setProjectionMatrix(camera.combined);
+
         Gdx.gl.glClearColor( 100/255f, 100/255f, 100/255f, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
         game.getBatch().begin();
         //drawBackground();
-        //drawEntities();
+        drawEntities();
         game.getBatch().end();
 
         if (DEBUG_PHYSICS) {
@@ -125,10 +128,15 @@ public class GameView extends ScreenAdapter {
 
     private void drawEntities() {
         PlayerModel playerOne = GameModel.getInstance().getPlayerOne();
+        PlayerModel playerTwo = GameModel.getInstance().getPlayerTwo();
 
-        EntityView view = ViewFactory.makeView(game, playerOne);
-        view.update(playerOne);
-        view.draw(game.getBatch());
+        EntityView viewOne = ViewFactory.makeView(game, playerOne);
+        viewOne.update(playerOne);
+        viewOne.draw(game.getBatch());
+
+        EntityView viewTwo = ViewFactory.makeView(game, playerTwo);
+        viewTwo.update(playerTwo);
+        viewTwo.draw(game.getBatch());
     }
 
 }

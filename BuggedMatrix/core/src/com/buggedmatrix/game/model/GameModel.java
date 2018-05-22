@@ -32,7 +32,7 @@ public class GameModel {
 
     private GameModel()
     {
-        playerOne = new PlayerModel(35,25, 0);
+        playerOne = new PlayerModel(25,25, 0);
 
         playerTwo = new PlayerModel(65,25, 0);
 

@@ -49,7 +49,7 @@ public class EntityBody {
 
             if (i % 2 != 0) vertexes[i] *= -1;          // invert the y-coordinate
 
-            //vertexes[i] *= PIXEL_TO_METER;              // scale from pixel to meter
+            vertexes[i] *= PIXEL_TO_METER;              // scale from pixel to meter
         }
 
         PolygonShape polygon = new PolygonShape();
