@@ -15,7 +15,11 @@ public class PlayerBody extends EntityBody {
         int width = 20, height = 10;
 
         createFixture(body, new float[]{
-                0,0, 0,height, width,0, width,height
+                0,0, 0,height, width/2,0, width/2,height
+        }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
+
+        createFixture(body, new float[]{
+                width/2,0, width/2,height, width,0, width,height
         }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
     }
 

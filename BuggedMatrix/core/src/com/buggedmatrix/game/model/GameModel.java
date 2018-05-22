@@ -32,9 +32,9 @@ public class GameModel {
 
     private GameModel()
     {
-        playerOne = new PlayerModel(35,25, 90);
+        playerOne = new PlayerModel(35,25, 0);
 
-        playerTwo = new PlayerModel(65,25, 90);
+        playerTwo = new PlayerModel(65,25, 0);
 
         leftWall = new WallModel(0, -MATRIX_HEIGTH/2  -1, 0);
 
