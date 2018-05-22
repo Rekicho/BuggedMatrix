@@ -69,6 +69,7 @@ public class GameController implements ContactListener{
 
         for (Body body : bodies) {
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
+            ((EntityModel) body.getUserData()).setRotation(body.getAngle());
         }
 
         world.step(delta, 6, 2);

@@ -11,12 +11,6 @@ public class PlayerView extends EntityView {
         super(game);
     }
 
-    public void draw(SpriteBatch batch)
-    {
-        //sprite.setScale(0.1f,0.1f);
-        super.draw(batch);
-    }
-
     @Override
     public Sprite createSprite(BuggedMatrix game) {
         Texture texture = game.getAssetManager().get("rectangle.png");
