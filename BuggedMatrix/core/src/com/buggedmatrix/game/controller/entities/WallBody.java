@@ -12,25 +12,25 @@ public class WallBody extends EntityBody {
     public WallBody(World world, EntityModel model, char orientation) {
         super(world, model, BodyDef.BodyType.StaticBody);
 
-        float density = 0.5f, friction = 0.5f, restitution = 0.5f;
+        float density = 0.5f, friction = 0.5f, restitution = 0.25f;
 
         if (orientation == 'l') {
-            int width = 0, height = (int) MATRIX_HEIGTH;
+            int width = 0, height = (int) MATRIX_HEIGTH + 1;
             createFixture(body, new float[]{
                     0,0, 0,-height, -1,0
             }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
         } else if (orientation == 'r') {
-            int width = 0, height = (int) MATRIX_HEIGTH;
+            int width = 0, height = (int) MATRIX_HEIGTH + 1;
             createFixture(body, new float[]{
                     0,0, 0,-height, 1,0
             }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
         } else if (orientation == 'f') {
-            int width = (int) MATRIX_WIDTH, height = 0;
+            int width = (int) MATRIX_WIDTH + 1, height = 0;
             createFixture(body, new float[]{
                     0,0, 0,1, width,0
             }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
         } else {
-            int width = (int) MATRIX_WIDTH, height = 0;
+            int width = (int) MATRIX_WIDTH + 1, height = 0;
             createFixture(body, new float[]{
                     0,0, 0,-1, width,0
             }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);

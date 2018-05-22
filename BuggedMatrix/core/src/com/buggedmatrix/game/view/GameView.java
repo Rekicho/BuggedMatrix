@@ -13,6 +13,7 @@ import com.buggedmatrix.game.model.GameModel;
 import com.buggedmatrix.game.model.entities.PlayerModel;
 import com.buggedmatrix.game.view.entities.EntityView;
 import com.buggedmatrix.game.view.entities.ViewFactory;
+import com.badlogic.gdx.Input;
 
 import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGTH;
 import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
@@ -61,22 +62,56 @@ public class GameView extends ScreenAdapter {
     }
 
     public void render (float delta) {
-
+        handleInputs(delta);
         GameController.getInstance().update(delta);
-
 
         Gdx.gl.glClearColor( 100/255f, 100/255f, 100/255f, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
         game.getBatch().begin();
         //drawBackground();
-        drawEntities();
+        //drawEntities();
         game.getBatch().end();
 
         if (DEBUG_PHYSICS) {
             debugCamera = camera.combined.cpy();
             debugCamera.scl(1/PIXEL_TO_METER);
             debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
+        }
+    }
+
+    private void handleInputs(float delta)
+    {
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            GameController.getInstance().getPlayerOne().applyForce(0,2500);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            GameController.getInstance().getPlayerOne().applyForce(-2500, 0);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            GameController.getInstance().getPlayerOne().applyForce(2500,0);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            GameController.getInstance().getPlayerOne().applyForce(0,-2500);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            GameController.getInstance().getPlayerTwo().applyForce(0,2500);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            GameController.getInstance().getPlayerTwo().applyForce(-2500, 0);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            GameController.getInstance().getPlayerTwo().applyForce(2500,0);
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            GameController.getInstance().getPlayerTwo().applyForce(0,-2500);
         }
     }
 

@@ -23,26 +23,24 @@ public class GameController implements ContactListener{
     public static final float MATRIX_WIDTH = 100;
     public static final float MATRIX_HEIGTH = 75;
 
-    private static final float GRAVITY = -40f;
+    private static final float GRAVITY = -15f;
 
     private final World world;
 
-    private final PlayerBody playerBody;
+    private final PlayerBody playerOne;
+    private final PlayerBody playerTwo;
 
     private final WallBody leftWall;
-
-
     private final WallBody rightWall;
-
     private final WallBody floorWall;
-
     private final WallBody ceelingWall;
 
 
     private GameController() {
         world = new World(new Vector2(0, GRAVITY), true);
 
-        playerBody = new PlayerBody(world, GameModel.getInstance().getPlayerOne());
+        playerOne = new PlayerBody(world, GameModel.getInstance().getPlayerOne());
+        playerTwo = new PlayerBody(world, GameModel.getInstance().getPlayerTwo());
 
         leftWall = new WallBody(world, GameModel.getInstance().getLeftWall(), 'l');
 
@@ -80,6 +78,10 @@ public class GameController implements ContactListener{
     public World getWorld() {
         return world;
     }
+
+    public PlayerBody getPlayerOne() {return playerOne; }
+
+    public PlayerBody getPlayerTwo() {return playerTwo; }
 
     @Override
     public void beginContact(Contact contact) {

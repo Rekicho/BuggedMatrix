@@ -11,13 +11,16 @@ public class PlayerBody extends EntityBody {
     public PlayerBody(World world, EntityModel model) {
         super(world, model, BodyDef.BodyType.DynamicBody);
 
-        float density = 0.5f, friction = 0.5f, restitution = 0.5f;
-        int width = 40, height = 20;
+        float density = 0.5f, friction = 0.5f, restitution = 0.25f;
+        int width = 20, height = 10;
 
         createFixture(body, new float[]{
                 0,0, 0,height, width,0, width,height
         }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
+    }
 
-
+    public void applyForce(float forcex, float forcey)
+    {
+        applyForceToCenter(forcex,forcey,true);
     }
 }

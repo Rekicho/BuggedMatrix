@@ -12,6 +12,7 @@ public class GameModel {
     private static GameModel instance;
 
     private PlayerModel playerOne;
+    private PlayerModel playerTwo;
 
     private WallModel leftWall;
 
@@ -29,23 +30,26 @@ public class GameModel {
         return instance;
     }
 
-    private GameModel() {
+    private GameModel()
+    {
+        playerOne = new PlayerModel(35,25, 90);
 
-        playerOne = new PlayerModel(50,30, 0);
+        playerTwo = new PlayerModel(65,25, 90);
 
-        leftWall = new WallModel(0, -MATRIX_HEIGTH/2, 0);
+        leftWall = new WallModel(0, -MATRIX_HEIGTH/2  -1, 0);
 
-        rightWall = new WallModel(MATRIX_WIDTH+1, -MATRIX_HEIGTH/2, 0);
+        rightWall = new WallModel(MATRIX_WIDTH, -MATRIX_HEIGTH/2  -1, 0);
 
-        floorWall = new WallModel(MATRIX_WIDTH/2, -1, 0);
+        floorWall = new WallModel(MATRIX_WIDTH/2, -1 , 0);
 
         ceelingWall = new WallModel(MATRIX_WIDTH/2, MATRIX_HEIGTH, 0);
-
     }
 
     public PlayerModel getPlayerOne() {
         return playerOne;
     }
+
+    public PlayerModel getPlayerTwo() { return playerTwo; }
 
     public WallModel getLeftWall() {
         return leftWall;
@@ -63,7 +67,5 @@ public class GameModel {
         return rightWall;
     }
 
-    public void update(float delta) {
-
-    }
+    public void update(float delta) {}
 }
