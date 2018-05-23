@@ -36,11 +36,11 @@ public class GameModel {
 
         playerTwo = new PlayerModel(65,25, 0);
 
-        leftWall = new WallModel(0, -MATRIX_HEIGTH/2  -1, 0);
+        leftWall = new WallModel(0, -(MATRIX_HEIGTH + 3)/2, 0);
 
-        rightWall = new WallModel(MATRIX_WIDTH, -MATRIX_HEIGTH/2  -1, 0);
+        rightWall = new WallModel(MATRIX_WIDTH, -(MATRIX_HEIGTH + 3)/2, 0);
 
-        floorWall = new WallModel(MATRIX_WIDTH/2, -1 , 0);
+        floorWall = new WallModel(MATRIX_WIDTH/2, 0 , 0);
 
         ceelingWall = new WallModel(MATRIX_WIDTH/2, MATRIX_HEIGTH, 0);
     }

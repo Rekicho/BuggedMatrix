@@ -17,6 +17,7 @@ public class PlayerBody extends EntityBody {
         createFixture(body, new float[]{
                 0,0, 0,height, width,0, width,height
         }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
+
     }
 
     public void applyForce(float forcex, float forcey)

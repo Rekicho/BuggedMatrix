@@ -21,7 +21,8 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 public class GameView extends ScreenAdapter {
     private static final boolean DEBUG_PHYSICS = true;
     public final static float PIXEL_TO_METER = 0.04f;
-    private static final float VIEWPORT_WIDTH = 30;
+    private static final float VIEWPORT_WIDTH = 100;
+    private static final float VIEWPORT_HEIGHT = 50;
     private final BuggedMatrix game;
     private final OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer;
@@ -46,10 +47,10 @@ public class GameView extends ScreenAdapter {
 
     private OrthographicCamera createCamera() {
 
-        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER,VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight()/(float) Gdx.graphics.getWidth()));
+        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER,VIEWPORT_HEIGHT / PIXEL_TO_METER);
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
-        camera.zoom += 5f;
+        //camera.zoom += 0.1f;
         camera.update();
 
         if (DEBUG_PHYSICS) {
