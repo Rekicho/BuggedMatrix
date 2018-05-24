@@ -11,6 +11,7 @@ import com.buggedmatrix.game.BuggedMatrix;
 import com.buggedmatrix.game.controller.GameController;
 import com.buggedmatrix.game.model.GameModel;
 import com.buggedmatrix.game.model.entities.PlayerModel;
+import com.buggedmatrix.game.model.entities.MemberModel;
 import com.buggedmatrix.game.view.entities.EntityView;
 import com.buggedmatrix.game.view.entities.ViewFactory;
 import com.badlogic.gdx.Input;
@@ -74,7 +75,7 @@ public class GameView extends ScreenAdapter {
 
         game.getBatch().begin();
         //drawBackground();
-        drawEntities();
+        //drawEntities();
         game.getBatch().end();
 
         if (DEBUG_PHYSICS) {
@@ -102,7 +103,7 @@ public class GameView extends ScreenAdapter {
             GameController.getInstance().getPlayerOne().applyForce(0,-2500);
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        /*if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             GameController.getInstance().getPlayerTwo().applyForce(0,2500);
         }
 
@@ -116,7 +117,7 @@ public class GameView extends ScreenAdapter {
 
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             GameController.getInstance().getPlayerTwo().applyForce(0,-2500);
-        }
+        }*/
     }
 
     private void drawBackground() {
@@ -129,15 +130,18 @@ public class GameView extends ScreenAdapter {
 
     private void drawEntities() {
         PlayerModel playerOne = GameModel.getInstance().getPlayerOne();
-        PlayerModel playerTwo = GameModel.getInstance().getPlayerTwo();
+        //PlayerModel playerTwo = GameModel.getInstance().getPlayerTwo();
 
-        EntityView viewOne = ViewFactory.makeView(game, playerOne);
-        viewOne.update(playerOne);
+        MemberModel chest1 = playerOne.getChest();
+        //MemberModel chest2 = playerTwo.getChest();
+
+        EntityView viewOne = ViewFactory.makeView(game, chest1);
+        viewOne.update(chest1);
         viewOne.draw(game.getBatch());
 
-        EntityView viewTwo = ViewFactory.makeView(game, playerTwo);
-        viewTwo.update(playerTwo);
-        viewTwo.draw(game.getBatch());
+        /*EntityView viewTwo = ViewFactory.makeView(game, chest2);
+        viewTwo.update(chest2);
+        viewTwo.draw(game.getBatch());*/
     }
 
 }

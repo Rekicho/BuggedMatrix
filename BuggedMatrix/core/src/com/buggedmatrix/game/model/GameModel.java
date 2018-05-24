@@ -34,7 +34,7 @@ public class GameModel {
     {
         playerOne = new PlayerModel(25,25, 0);
 
-        playerTwo = new PlayerModel(65,25, 0);
+        //playerTwo = new PlayerModel(65,25, 0);
 
         leftWall = new WallModel(0, -(MATRIX_HEIGTH + 3)/2, 0);
 

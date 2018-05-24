@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.buggedmatrix.game.BuggedMatrix;
 
-public class PlayerView extends EntityView {
+public class MemberView extends EntityView {
 
-    public PlayerView(BuggedMatrix game) {
+    public MemberView(BuggedMatrix game) {
         super(game);
     }
 

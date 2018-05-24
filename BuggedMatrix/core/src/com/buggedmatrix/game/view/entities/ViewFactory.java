@@ -6,7 +6,8 @@ import com.buggedmatrix.game.model.entities.EntityModel;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.buggedmatrix.game.model.entities.EntityModel.ModelType.PLAYER;
+import static com.buggedmatrix.game.model.entities.EntityModel.ModelType.CHEST;
+import static com.buggedmatrix.game.model.entities.EntityModel.ModelType.LEG;
 
 public class ViewFactory {
 
@@ -15,8 +16,13 @@ public class ViewFactory {
 
     public static EntityView makeView(BuggedMatrix game, EntityModel model) {
         if (!cache.containsKey(model.getType())) {
-            if (model.getType() == PLAYER)
-                cache.put(model.getType(), new PlayerView(game));
+            if (model.getType() == CHEST) {
+                cache.put(model.getType(), new MemberView(game));
+            }
+
+            else if (model.getType() == LEG) {
+                cache.put(model.getType(), new MemberView(game));
+            }
         }
         return cache.get(model.getType());
     }
