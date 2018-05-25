@@ -1,5 +1,8 @@
 package com.buggedmatrix.game.model;
 
+import com.buggedmatrix.game.controller.entities.PlayerBody;
+import com.buggedmatrix.game.model.entities.BulletModel;
+import com.buggedmatrix.game.model.entities.EntityModel;
 import com.buggedmatrix.game.model.entities.PlayerModel;
 import com.buggedmatrix.game.model.entities.WallModel;
 
@@ -13,6 +16,9 @@ public class GameModel {
 
     private PlayerModel playerOne;
     private PlayerModel playerTwo;
+
+    private BulletModel playerOneBullet;
+    private BulletModel playerTwoBullet;
 
     private WallModel leftWall;
 
@@ -32,9 +38,9 @@ public class GameModel {
 
     private GameModel()
     {
-        playerOne = new PlayerModel(25,25, 0);
+        playerOne = new PlayerModel(25,25, -45, 1);
 
-        playerTwo = new PlayerModel(65,25, 0);
+        //playerTwo = new PlayerModel(65,25, -45, 2);
 
         leftWall = new WallModel(0, -(MATRIX_HEIGTH + 3)/2, 0);
 
@@ -50,6 +56,22 @@ public class GameModel {
     }
 
     public PlayerModel getPlayerTwo() { return playerTwo; }
+
+    public BulletModel getPlayerOneBullet()
+    {
+        if(playerOneBullet == null)
+            playerOneBullet = new BulletModel(playerOne.getX(), playerOne.getY(), 0, 1);
+
+        return playerOneBullet;
+    }
+
+    public BulletModel getPlayerTwoBullet()
+    {
+        if(playerTwoBullet == null)
+            playerTwoBullet = new BulletModel(playerTwo.getX(),playerTwo.getY(),0, 2);
+
+        return playerTwoBullet;
+    }
 
     public WallModel getLeftWall() {
         return leftWall;
@@ -68,4 +90,16 @@ public class GameModel {
     }
 
     public void update(float delta) {}
+
+    public void remove(EntityModel model)
+    {
+        if (model instanceof BulletModel)
+        {
+            if(((BulletModel) model).getPlayerID() == 1)
+                playerOneBullet = null;
+
+            else if(((BulletModel) model).getPlayerID() == 2)
+                playerTwoBullet = null;
+        }
+    }
 }

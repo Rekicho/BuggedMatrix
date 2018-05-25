@@ -14,7 +14,7 @@ import static com.buggedmatrix.game.view.GameView.PIXEL_TO_METER;
 
 public class EntityBody {
 
-    final static short PLAYER_BODY = 0x0002;
+    final static short BODY = 0x0001;
     final Body body;
 
     public EntityBody(World world, EntityModel model, BodyDef.BodyType type) {

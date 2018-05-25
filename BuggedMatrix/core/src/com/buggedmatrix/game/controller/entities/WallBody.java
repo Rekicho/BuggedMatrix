@@ -19,22 +19,22 @@ public class WallBody extends EntityBody {
             int width = 0, height = (int) ((MATRIX_HEIGTH+1)/PIXEL_TO_METER);
             createFixture(body, new float[]{
                     0,0, 0,-height, -1,0
-            }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
+            }, width, height, density, friction, restitution, BODY, BODY);
         } else if (orientation == 'r') {
             int width = 0, height = (int) ((MATRIX_HEIGTH+1)/PIXEL_TO_METER);
             createFixture(body, new float[]{
                     0,0, 0,-height, 1,0
-            }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
+            }, width, height, density, friction, restitution, BODY, BODY);
         } else if (orientation == 'f') {
             int width = (int) (MATRIX_WIDTH/PIXEL_TO_METER), height = 0;
             createFixture(body, new float[]{
                     0,0, 0,1, width,0
-            }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
+            }, width, height, density, friction, restitution, BODY, BODY);
         } else {
             int width = (int) (MATRIX_WIDTH/PIXEL_TO_METER), height = 0;
             createFixture(body, new float[]{
                     0,0, 0,-1, width,0
-            }, width, height, density, friction, restitution, PLAYER_BODY, PLAYER_BODY);
+            }, width, height, density, friction, restitution, BODY, BODY);
         }
 
     }

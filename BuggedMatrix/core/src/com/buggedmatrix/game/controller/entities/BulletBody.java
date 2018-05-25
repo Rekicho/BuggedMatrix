@@ -1,0 +1,22 @@
+package com.buggedmatrix.game.controller.entities;
+
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.World;
+import com.buggedmatrix.game.model.entities.EntityModel;
+
+public class BulletBody extends EntityBody {
+    static final int BULLET_FORCE = 1000;
+
+    public BulletBody(World world, EntityModel model, float rotation) {
+        super(world, model, BodyDef.BodyType.DynamicBody);
+
+        float density = 1f, friction = 0.5f, restitution = 1f;
+        int width = 20, height = 8;
+
+        createFixture(body, new float[]{
+                0,0, 0,height, width,0, width,height
+        }, width, height, density, friction, restitution, BODY, BODY);
+
+        this.body.applyForceToCenter((float)(BULLET_FORCE*Math.cos(rotation)),(float) (BULLET_FORCE*Math.sin(rotation)),true);
+    }
+}
