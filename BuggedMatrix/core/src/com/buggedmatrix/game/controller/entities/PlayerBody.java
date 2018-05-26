@@ -23,7 +23,7 @@ public class PlayerBody extends EntityBody {
 
         //SIZES
 
-        float chest_x = 20, chest_y = 30, chest_size_x = 8, chest_size_y = 2,
+        float chest_x = model.getX() - 5, chest_y = model.getY() + 5, chest_size_x = 8, chest_size_y = 2,
                 leg_size_x = 8, leg_size_y = 1,
                 leftleg_x = chest_x + leg_size_y/2f + chest_size_y/2f + 0.9f, leftleg_y = chest_y - chest_size_x/2f - leg_size_x/2f + 0.5f,
                 rightleg_x = chest_x - leg_size_y/2f - chest_size_y/2f - 0.9f, rightleg_y = leftleg_y,
@@ -101,6 +101,6 @@ public class PlayerBody extends EntityBody {
 
     public void applyForce(float forcex, float forcey)
     {
-        applyForceToCenter(forcex,forcey,true);
+        chest.applyForceToCenter(forcex,forcey,true);
     }
 }

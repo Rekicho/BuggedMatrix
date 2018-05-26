@@ -104,19 +104,19 @@ public class GameView extends ScreenAdapter {
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            //GameController.getInstance().getPlayerTwo().applyForce(0,2500);
+            GameController.getInstance().getPlayerTwo().applyForce(0,2500);
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            //GameController.getInstance().getPlayerTwo().applyForce(-2500, 0);
+            GameController.getInstance().getPlayerTwo().applyForce(-2500, 0);
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            //GameController.getInstance().getPlayerTwo().applyForce(2500,0);
+            GameController.getInstance().getPlayerTwo().applyForce(2500,0);
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            //GameController.getInstance().getPlayerTwo().applyForce(0,-2500);
+            GameController.getInstance().getPlayerTwo().applyForce(0,-2500);
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.C)) {

@@ -16,12 +16,12 @@ public class PlayerModel extends EntityModel {
         super(x, y, rotation);
         this.playerID = playerID;
 
-        chest = new MemberModel(0, 0, 0);
-        leftleg = new MemberModel(0, 0, 0);
-        rightleg = new MemberModel(0, 0, 0);
-        leftarm = new MemberModel(0, 0, 0);
-        rightarm = new MemberModel(0, 0, 0);
-        head = new MemberModel(0, 0, 0);
+        chest = new MemberModel(0, 0, 0, playerID);
+        leftleg = new MemberModel(0, 0, 0, playerID);
+        rightleg = new MemberModel(0, 0, 0, playerID);
+        leftarm = new MemberModel(0, 0, 0, playerID);
+        rightarm = new MemberModel(0, 0, 0, playerID);
+        head = new MemberModel(0, 0, 0, playerID);
     }
 
     public ModelType getType() {

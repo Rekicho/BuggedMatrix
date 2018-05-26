@@ -18,6 +18,7 @@ import com.buggedmatrix.game.controller.entities.WallBody;
 import com.buggedmatrix.game.model.GameModel;
 import com.buggedmatrix.game.model.entities.BulletModel;
 import com.buggedmatrix.game.model.entities.EntityModel;
+import com.buggedmatrix.game.model.entities.MemberModel;
 import com.buggedmatrix.game.model.entities.PlayerModel;
 import com.buggedmatrix.game.model.entities.WallModel;
 
@@ -33,7 +34,7 @@ public class GameController implements ContactListener{
     private final World world;
 
     private final PlayerBody playerOne;
-    //private final PlayerBody playerTwo;
+    private final PlayerBody playerTwo;
 
     private BulletBody playerOneBullet;
     private BulletBody playerTwoBullet;
@@ -51,9 +52,9 @@ public class GameController implements ContactListener{
 
         playerOne.setTransform(playerOne.getX(), playerOne.getY(), GameModel.getInstance().getPlayerOne().getRotation());
 
-        //playerTwo = new PlayerBody(world, GameModel.getInstance().getPlayerTwo());
+        playerTwo = new PlayerBody(world, GameModel.getInstance().getPlayerTwo());
 
-        //playerTwo.setTransform(playerTwo.getX(), playerTwo.getY(), GameModel.getInstance().getPlayerTwo().getRotation());
+        playerTwo.setTransform(playerTwo.getX(), playerTwo.getY(), GameModel.getInstance().getPlayerTwo().getRotation());
 
         leftWall = new WallBody(world, GameModel.getInstance().getLeftWall(), 'l');
 
@@ -99,19 +100,19 @@ public class GameController implements ContactListener{
 
     public PlayerBody getPlayerOne() {return playerOne; }
 
-    //public PlayerBody getPlayerTwo() {return playerTwo; }
+    public PlayerBody getPlayerTwo() {return playerTwo; }
 
     public void beginContact(Contact contact) {
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
 
-        if(bodyA.getUserData() instanceof PlayerModel && bodyB.getUserData() instanceof BulletModel)
+        if(bodyA.getUserData() instanceof MemberModel && bodyB.getUserData() instanceof BulletModel)
         {
             if(!((BulletModel)bodyB.getUserData()).isInitial())
                 bulletCollision(bodyA,bodyB);
         }
 
-        else if(bodyA.getUserData() instanceof BulletModel && bodyB.getUserData() instanceof PlayerModel)
+        else if(bodyA.getUserData() instanceof BulletModel && bodyB.getUserData() instanceof MemberModel)
         {
             if(!((BulletModel)bodyA.getUserData()).isInitial())
                 bulletCollision(bodyB,bodyA);
@@ -124,9 +125,9 @@ public class GameController implements ContactListener{
             bulletBounce(bodyB, bodyA);
     }
 
-    public void bulletCollision(Body player, Body bullet)
+    public void bulletCollision(Body member, Body bullet)
     {
-        if(((PlayerModel)(player.getUserData())).getPlayerID() != ((BulletModel)(bullet.getUserData())).getPlayerID())
+        if(((MemberModel)(member.getUserData())).getPlayerID() != ((BulletModel)(bullet.getUserData())).getPlayerID())
             Gdx.app.exit(); //GameOver
 
         ((BulletModel)bullet.getUserData()).setFlaggedForRemoval(true);
