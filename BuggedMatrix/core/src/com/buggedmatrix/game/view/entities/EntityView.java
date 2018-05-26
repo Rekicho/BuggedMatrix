@@ -11,9 +11,13 @@ import static com.buggedmatrix.game.view.GameView.PIXEL_TO_METER;
 
 public abstract class EntityView {
 
+    private int image;
+
     Sprite sprite;
 
-    public EntityView(BuggedMatrix game) {
+    public EntityView(BuggedMatrix game, int image) {
+
+        this.image = image;
         sprite = createSprite(game);
     }
 
@@ -26,5 +30,9 @@ public abstract class EntityView {
     public void update(EntityModel model) {
         sprite.setCenter(model.getX() / PIXEL_TO_METER, model.getY() / PIXEL_TO_METER);
         sprite.setRotation((float) Math.toDegrees(model.getRotation()));
+    }
+
+    public int getImage() {
+        return image;
     }
 }

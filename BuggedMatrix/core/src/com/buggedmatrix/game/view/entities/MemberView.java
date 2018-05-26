@@ -7,13 +7,28 @@ import com.buggedmatrix.game.BuggedMatrix;
 
 public class MemberView extends EntityView {
 
-    public MemberView(BuggedMatrix game) {
-        super(game);
+    public MemberView(BuggedMatrix game, int bodypart) {
+        super(game, bodypart);
     }
 
     @Override
     public Sprite createSprite(BuggedMatrix game) {
-        Texture texture = game.getAssetManager().get("rectangle.png");
-        return new Sprite(texture, texture.getWidth(), texture.getHeight());
+
+        Texture texture;
+
+        if (getImage() == 4) {
+            texture = game.getAssetManager().get("chest.png");
+            return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        } else if (getImage() == 1) {
+            texture = game.getAssetManager().get("leg.png");
+            return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        } else if (getImage() == 2) {
+            texture = game.getAssetManager().get("arm.png");
+            return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        } else {
+            texture = game.getAssetManager().get("head.png");
+            return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        }
+
     }
 }

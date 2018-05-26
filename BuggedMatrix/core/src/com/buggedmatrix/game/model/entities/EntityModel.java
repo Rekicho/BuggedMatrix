@@ -2,7 +2,7 @@ package com.buggedmatrix.game.model.entities;
 
 public abstract class EntityModel {
 
-    public enum ModelType {PLAYER, WALL, BULLET, CHEST, LEG};
+    public enum ModelType {PLAYER, WALL, BULLET, CHEST, LEG, HEAD, ARM};
 
     private float x;
     private float y;
