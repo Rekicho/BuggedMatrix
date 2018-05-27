@@ -15,7 +15,6 @@ public class MemberView extends EntityView {
     public Sprite createSprite(BuggedMatrix game) {
 
         Texture texture;
-        System.out.print(getImage() + " ");
 
         if (getImage() == 4) {
             texture = game.getAssetManager().get("chest.png");

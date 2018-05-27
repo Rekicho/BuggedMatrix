@@ -19,7 +19,6 @@ public class ViewFactory {
             new HashMap<EntityModel.ModelType, EntityView>();
 
     public static EntityView makeView(BuggedMatrix game, EntityModel model, int image) {
-        System.out.print(model.getType() + "-" + image + "-");
         if (!cache.containsKey(model.getType())) {
             if (model.getType() == CHEST) {
                 cache.put(model.getType(), new MemberView(game, image));

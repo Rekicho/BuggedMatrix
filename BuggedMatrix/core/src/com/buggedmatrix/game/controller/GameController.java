@@ -22,6 +22,8 @@ import com.buggedmatrix.game.model.entities.MemberModel;
 import com.buggedmatrix.game.model.entities.PlayerModel;
 import com.buggedmatrix.game.model.entities.WallModel;
 
+import java.lang.reflect.Member;
+
 public class GameController implements ContactListener{
 
     private static GameController instance;
@@ -110,6 +112,8 @@ public class GameController implements ContactListener{
         {
             if(!((BulletModel)bodyB.getUserData()).isInitial())
                 bulletCollision(bodyA,bodyB);
+
+            //else bodyB.setLinearVelocity((float)(BULLET_VELOCITY*Math.cos(rotation)),(float) (BULLET_VELOCITY*Math.sin(rotation)));
         }
 
         else if(bodyA.getUserData() instanceof BulletModel && bodyB.getUserData() instanceof MemberModel)
@@ -158,7 +162,7 @@ public class GameController implements ContactListener{
         if(playerOneBullet != null)
             return;
 
-        playerOneBullet = new BulletBody(world, GameModel.getInstance().getPlayerOneBullet(), GameModel.getInstance().getPlayerOne().getRotation());
+        playerOneBullet = new BulletBody(world, GameModel.getInstance().getPlayerOneBullet(), GameModel.getInstance().getPlayerOne().getLeftarm().getRotation());
     }
 
     public void PlayerTwoShoot()
@@ -166,7 +170,7 @@ public class GameController implements ContactListener{
         if(playerTwoBullet != null)
             return;
 
-        playerTwoBullet = new BulletBody(world, GameModel.getInstance().getPlayerTwoBullet(), GameModel.getInstance().getPlayerTwo().getRotation());
+        playerTwoBullet = new BulletBody(world, GameModel.getInstance().getPlayerTwoBullet(), GameModel.getInstance().getPlayerTwo().getLeftarm().getRotation());
     }
 
     public void removeFlagged()

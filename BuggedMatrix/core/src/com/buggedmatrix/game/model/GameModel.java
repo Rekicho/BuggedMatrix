@@ -60,7 +60,7 @@ public class GameModel {
     public BulletModel getPlayerOneBullet()
     {
         if(playerOneBullet == null)
-            playerOneBullet = new BulletModel(playerOne.getX(), playerOne.getY(), 0, 1);
+            playerOneBullet = new BulletModel(playerOne.getLeftarm().getX(), playerOne.getLeftarm().getY(), 0, 1);
 
         return playerOneBullet;
     }
@@ -68,7 +68,7 @@ public class GameModel {
     public BulletModel getPlayerTwoBullet()
     {
         if(playerTwoBullet == null)
-            playerTwoBullet = new BulletModel(playerTwo.getX(),playerTwo.getY(),0, 2);
+            playerTwoBullet = new BulletModel(playerTwo.getLeftarm().getX(),playerTwo.getLeftarm().getY(),0, 2);
 
         return playerTwoBullet;
     }

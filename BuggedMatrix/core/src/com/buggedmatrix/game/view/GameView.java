@@ -209,8 +209,6 @@ public class GameView extends ScreenAdapter {
         EntityView viewTwoHead = ViewFactory.makeView(game, head2,8);
         viewTwoHead.update(head2);
         viewTwoHead.draw(game.getBatch());
-
-        System.out.print("\n");
     }
 
 }

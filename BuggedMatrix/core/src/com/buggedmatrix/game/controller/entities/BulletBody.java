@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.buggedmatrix.game.model.entities.EntityModel;
 
 public class BulletBody extends EntityBody {
-    static final int BULLET_FORCE = 1000;
+    static final int BULLET_VELOCITY = 1000;
 
     public BulletBody(World world, EntityModel model, float rotation) {
         super(world, model, BodyDef.BodyType.DynamicBody);
@@ -17,6 +17,6 @@ public class BulletBody extends EntityBody {
                 0,0, 0,height, width,0, width,height
         }, width, height, density, friction, restitution, BODY, BODY);
 
-        this.body.applyForceToCenter((float)(BULLET_FORCE*Math.cos(rotation)),(float) (BULLET_FORCE*Math.sin(rotation)),true);
+        this.body.setLinearVelocity((float)(BULLET_VELOCITY*Math.cos(rotation)),(float) (BULLET_VELOCITY*Math.sin(rotation)));
     }
 }
