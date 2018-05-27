@@ -18,20 +18,19 @@ public class ViewFactory {
     private static Map<EntityModel.ModelType, EntityView> cache =
             new HashMap<EntityModel.ModelType, EntityView>();
 
-    public static EntityView makeView(BuggedMatrix game, EntityModel model) {
+    public static EntityView makeView(BuggedMatrix game, EntityModel model, int image) {
+        System.out.print(model.getType() + "-" + image + "-");
         if (!cache.containsKey(model.getType())) {
             if (model.getType() == CHEST) {
-                System.out.print("OK1\n");
-                cache.put(model.getType(), new MemberView(game, 4));
+                cache.put(model.getType(), new MemberView(game, image));
             }
             if (model.getType() == LEG) {
-                System.out.print("OK2\n");
-                cache.put(model.getType(), new MemberView(game, 1));
+                cache.put(model.getType(), new MemberView(game, image));
             }
             if (model.getType() == ARM)
-                cache.put(model.getType(), new MemberView(game, 2));
+                cache.put(model.getType(), new MemberView(game, image));
             if (model.getType() == HEAD)
-                cache.put(model.getType(), new MemberView(game, 3));
+                cache.put(model.getType(), new MemberView(game, image));
         }
         return cache.get(model.getType());
     }

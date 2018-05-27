@@ -45,6 +45,10 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load("chest.png", Texture.class);
         this.game.getAssetManager().load("leg.png", Texture.class);
         this.game.getAssetManager().load("arm.png", Texture.class);
+        this.game.getAssetManager().load("head2.png", Texture.class);
+        this.game.getAssetManager().load("chest2.png", Texture.class);
+        this.game.getAssetManager().load("leg2.png", Texture.class);
+        this.game.getAssetManager().load("arm2.png", Texture.class);
         this.game.getAssetManager().load("rectangle.png", Texture.class);
 
         this.game.getAssetManager().finishLoading();
@@ -151,35 +155,62 @@ public class GameView extends ScreenAdapter {
         MemberModel rightarm1 = playerOne.getRightarm();
         MemberModel head1 = playerOne.getHead();
 
-        MemberModel chest2 = playerTwo.getChest();
-
-        EntityView viewOneChest = ViewFactory.makeView(game, chest1);
+        EntityView viewOneChest = ViewFactory.makeView(game, chest1, 4);
         viewOneChest.update(chest1);
         viewOneChest.draw(game.getBatch());
 
-        EntityView viewOneLeftLeg = ViewFactory.makeView(game, leftleg1);
+        EntityView viewOneLeftLeg = ViewFactory.makeView(game, leftleg1, 1);
         viewOneLeftLeg.update(leftleg1);
         viewOneLeftLeg.draw(game.getBatch());
 
-        EntityView viewOneRightLeg = ViewFactory.makeView(game, rightleg1);
+        EntityView viewOneRightLeg = ViewFactory.makeView(game, rightleg1, 1);
         viewOneRightLeg.update(rightleg1);
         viewOneRightLeg.draw(game.getBatch());
 
-        EntityView viewOneLeftArm = ViewFactory.makeView(game, leftarm1);
+        EntityView viewOneLeftArm = ViewFactory.makeView(game, leftarm1, 2);
         viewOneLeftArm.update(leftarm1);
         viewOneLeftArm.draw(game.getBatch());
 
-        EntityView viewOneRightArm = ViewFactory.makeView(game, rightarm1);
+        EntityView viewOneRightArm = ViewFactory.makeView(game, rightarm1, 2);
         viewOneRightArm.update(rightarm1);
         viewOneRightArm.draw(game.getBatch());
 
-        EntityView viewOneHead = ViewFactory.makeView(game, head1);
+        EntityView viewOneHead = ViewFactory.makeView(game, head1, 3);
         viewOneHead.update(head1);
         viewOneHead.draw(game.getBatch());
 
-        /*EntityView viewTwo = ViewFactory.makeView(game, chest2);
-        viewTwo.update(chest2);
-        viewTwo.draw(game.getBatch());*/
+        MemberModel chest2 = playerTwo.getChest();
+        MemberModel leftleg2 = playerTwo.getLeftleg();
+        MemberModel rightleg2 = playerTwo.getRightleg();
+        MemberModel leftarm2 = playerTwo.getLeftarm();
+        MemberModel rightarm2 = playerTwo.getRightarm();
+        MemberModel head2 = playerTwo.getHead();
+
+        EntityView viewTwoChest = ViewFactory.makeView(game, chest2, 5);
+        viewTwoChest.update(chest2);
+        viewTwoChest.draw(game.getBatch());
+
+        EntityView viewTwoLeftLeg = ViewFactory.makeView(game, leftleg2, 6);
+        viewTwoLeftLeg.update(leftleg2);
+        viewTwoLeftLeg.draw(game.getBatch());
+
+        EntityView viewTwoRightLeg = ViewFactory.makeView(game, rightleg2, 6);
+        viewTwoRightLeg.update(rightleg2);
+        viewTwoRightLeg.draw(game.getBatch());
+
+        EntityView viewTwoLeftArm = ViewFactory.makeView(game, leftarm2, 7);
+        viewTwoLeftArm.update(leftarm2);
+        viewTwoLeftArm.draw(game.getBatch());
+
+        EntityView viewTwoRightArm = ViewFactory.makeView(game, rightarm2, 7);
+        viewTwoRightArm.update(rightarm2);
+        viewTwoRightArm.draw(game.getBatch());
+
+        EntityView viewTwoHead = ViewFactory.makeView(game, head2,8);
+        viewTwoHead.update(head2);
+        viewTwoHead.draw(game.getBatch());
+
+        System.out.print("\n");
     }
 
 }

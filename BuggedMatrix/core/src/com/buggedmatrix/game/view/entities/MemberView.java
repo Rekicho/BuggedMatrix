@@ -15,6 +15,7 @@ public class MemberView extends EntityView {
     public Sprite createSprite(BuggedMatrix game) {
 
         Texture texture;
+        System.out.print(getImage() + " ");
 
         if (getImage() == 4) {
             texture = game.getAssetManager().get("chest.png");
@@ -25,8 +26,20 @@ public class MemberView extends EntityView {
         } else if (getImage() == 2) {
             texture = game.getAssetManager().get("arm.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
-        } else {
+        } else if (getImage() == 3) {
             texture = game.getAssetManager().get("head.png");
+            return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        } else if (getImage() == 5) {
+            texture = game.getAssetManager().get("chest2.png");
+            return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        } else if (getImage() == 6) {
+            texture = game.getAssetManager().get("leg2.png");
+            return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        } else if (getImage() == 7) {
+            texture = game.getAssetManager().get("arm2.png");
+            return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        } else {
+            texture = game.getAssetManager().get("head2.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
         }
 
