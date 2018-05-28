@@ -37,8 +37,11 @@ public class MemberView extends EntityView {
         } else if (bodypart == 7) {
             texture = game.getAssetManager().get("arm2.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
-        } else {
+        } else if (bodypart == 8) {
             texture = game.getAssetManager().get("head2.png");
+            return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        } else {
+            texture = game.getAssetManager().get("wand.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
         }
 

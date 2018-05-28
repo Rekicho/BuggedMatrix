@@ -17,6 +17,7 @@ public class PlayerBody extends EntityBody {
     private final MemberBody rightarm;
     private final MemberBody chest;
     private final MemberBody head;
+    private final MemberBody gun;
 
     public PlayerBody(World world, EntityModel model) {
         super(world, model, BodyDef.BodyType.DynamicBody);
@@ -30,7 +31,9 @@ public class PlayerBody extends EntityBody {
                 arm_size_x = 7, arm_size_y = 1,
                 leftarm_x = chest_x + leg_size_y/2f + chest_size_x/2f + 0.1f, leftarm_y = chest_y + chest_size_x/2f + 0.05f,
                 rightarm_x = chest_x - leg_size_y/2f - chest_size_x/2f - 0.1f, rightarm_y = leftarm_y,
-                head_size = 3.5f, head_x = chest_x, head_y = chest_y + chest_size_x/2f + head_size/2f + 0.3f;
+                head_size = 3.5f, head_x = chest_x, head_y = chest_y + chest_size_x/2f + head_size/2f + 0.3f,
+                gun_size_x = 3.5f, gun_size_y = 0.6f, player1_gun_x = leftarm_x + arm_size_x/2f + 0.5f, player2_gun_x = rightarm_x - arm_size_x/2f - 0.5f,
+                gun_y = leftarm_y + arm_size_y/2f + gun_size_y;
 
 
         //DISPLAYS
@@ -53,6 +56,12 @@ public class PlayerBody extends EntityBody {
         head =  new MemberBody(world, ((PlayerModel)model).getHead(), (int) (head_size/PIXEL_TO_METER), (int) (head_size/PIXEL_TO_METER));
         head.setTransform(head_x, head_y, 0);
 
+        gun =  new MemberBody(world, ((PlayerModel)model).getGun(), (int) (gun_size_x/PIXEL_TO_METER), (int) (gun_size_y/PIXEL_TO_METER));
+        if (((PlayerModel)model).getPlayerID() == 1)
+            gun.setTransform(player1_gun_x, gun_y, 0);
+        else
+            gun.setTransform(player2_gun_x, gun_y, 0);
+
 
         //JOINTS
 
@@ -61,6 +70,9 @@ public class PlayerBody extends EntityBody {
         DistanceJointDef leftshoulder = new DistanceJointDef();
         DistanceJointDef rightshoulder = new DistanceJointDef();
         DistanceJointDef neck = new DistanceJointDef();
+        DistanceJointDef gungrip1 = new DistanceJointDef();
+        DistanceJointDef gungrip2 = new DistanceJointDef();
+
 
         lefthip.initialize(leftleg.body, chest.body,
                 new Vector2(chest_x + chest_size_y/2f - 0.1f,chest_y - chest_size_x/2f + 0.4f),
@@ -92,11 +104,37 @@ public class PlayerBody extends EntityBody {
         neck.length = 0.01f;
         neck.collideConnected = true;
 
+        if (((PlayerModel)model).getPlayerID() == 1) {
+            gungrip1.initialize(leftarm.body, gun.body,
+                    new Vector2(leftarm_x + arm_size_x/2f, leftarm_y),
+                    new Vector2(leftarm_x + arm_size_x/2f, gun_y));
+
+            gungrip2.initialize(leftarm.body, gun.body,
+                    new Vector2(leftarm_x + arm_size_x/2f - 0.5f, leftarm_y),
+                    new Vector2(leftarm_x + arm_size_x/2f - 0.5f, gun_y));
+        } else {
+            gungrip1.initialize(rightarm.body, gun.body,
+                    new Vector2(rightarm_x - arm_size_x/2f, rightarm_y),
+                    new Vector2(rightarm_x - arm_size_x/2f, gun_y));
+
+            gungrip2.initialize(rightarm.body, gun.body,
+                    new Vector2(rightarm_x - arm_size_x/2f + 0.5f, rightarm_y),
+                    new Vector2(rightarm_x - arm_size_x/2f + 0.5f, gun_y));
+        }
+
+        gungrip1.length = 0.01f;
+        gungrip2.length = 0.01f;
+
+        gungrip1.collideConnected = true;
+        gungrip2.collideConnected = true;
+
         world.createJoint(lefthip);
         world.createJoint(righthip);
         world.createJoint(leftshoulder);
         world.createJoint(rightshoulder);
         world.createJoint(neck);
+        world.createJoint(gungrip1);
+        world.createJoint(gungrip2);
     }
 
     public void applyForce(float forcex, float forcey)

@@ -21,7 +21,7 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGTH;
 import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 
 public class GameView extends ScreenAdapter {
-    private static final boolean DEBUG_PHYSICS = true;
+    private static final boolean DEBUG_PHYSICS = false;
     public final static float PIXEL_TO_METER = 0.04f;
     private static final float VIEWPORT_WIDTH = 100;
     private static final float VIEWPORT_HEIGHT = 50;
@@ -50,6 +50,7 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load("arm2.png", Texture.class);
         this.game.getAssetManager().load("bullet.png", Texture.class);
         this.game.getAssetManager().load("bullet2.png", Texture.class);
+        this.game.getAssetManager().load("wand.png", Texture.class);
 
         this.game.getAssetManager().finishLoading();
     }
@@ -151,6 +152,7 @@ public class GameView extends ScreenAdapter {
         MemberModel leftarm1 = playerOne.getLeftarm();
         MemberModel rightarm1 = playerOne.getRightarm();
         MemberModel head1 = playerOne.getHead();
+        MemberModel gun1 = playerOne.getGun();
 
         EntityView viewOneChest = ViewFactory.makeView(game, chest1);
         viewOneChest.update(chest1);
@@ -176,12 +178,17 @@ public class GameView extends ScreenAdapter {
         viewOneHead.update(head1);
         viewOneHead.draw(game.getBatch());
 
+        EntityView viewOneGun = ViewFactory.makeView(game, gun1);
+        viewOneGun.update(gun1);
+        viewOneGun.draw(game.getBatch());
+
         MemberModel chest2 = playerTwo.getChest();
         MemberModel leftleg2 = playerTwo.getLeftleg();
         MemberModel rightleg2 = playerTwo.getRightleg();
         MemberModel leftarm2 = playerTwo.getLeftarm();
         MemberModel rightarm2 = playerTwo.getRightarm();
         MemberModel head2 = playerTwo.getHead();
+        MemberModel gun2= playerTwo.getGun();
 
         EntityView viewTwoChest = ViewFactory.makeView(game, chest2);
         viewTwoChest.update(chest2);
@@ -206,6 +213,10 @@ public class GameView extends ScreenAdapter {
         EntityView viewTwoHead = ViewFactory.makeView(game, head2);
         viewTwoHead.update(head2);
         viewTwoHead.draw(game.getBatch());
+
+        EntityView viewTwoGun = ViewFactory.makeView(game, gun2);
+        viewTwoGun.update(gun2);
+        viewTwoGun.draw(game.getBatch());
 
         BulletModel bulletOne = GameModel.getInstance().getBulletOne();
         BulletModel bulletTwo = GameModel.getInstance().getBulletTwo();

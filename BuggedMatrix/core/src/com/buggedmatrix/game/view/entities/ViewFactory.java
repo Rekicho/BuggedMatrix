@@ -35,6 +35,8 @@ public class ViewFactory {
                 cache.put(model.getType(), new BulletView(game, -1));
             else if (model.getType() == ModelType.BULLET2)
                 cache.put(model.getType(), new BulletView(game, -2));
+            else if (model.getType() == ModelType.GUN)
+                cache.put(model.getType(), new MemberView(game, 9));
         }
         return cache.get(model.getType());
     }

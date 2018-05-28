@@ -10,11 +10,13 @@ public class PlayerModel extends EntityModel {
     private final MemberModel rightarm;
     private final MemberModel chest;
     private final MemberModel head;
+    private final MemberModel gun;
 
     public PlayerModel(float x, float y, int rotation, int playerID)
     {
         super(x, y, rotation);
         this.playerID = playerID;
+
 
         if(playerID == 1)
         {
@@ -24,6 +26,7 @@ public class PlayerModel extends EntityModel {
             leftarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM1);
             rightarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM1);
             head = new MemberModel(0, 0, 0, playerID, ModelType.HEAD1);
+            gun = new MemberModel(0, 0, 0, playerID, ModelType.GUN);
         }
 
         else
@@ -34,6 +37,7 @@ public class PlayerModel extends EntityModel {
             leftarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM2);
             rightarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM2);
             head = new MemberModel(0, 0, 0, playerID, ModelType.HEAD2);
+            gun = new MemberModel(0, 0, 0, playerID, ModelType.GUN);
         }
     }
 
@@ -65,5 +69,9 @@ public class PlayerModel extends EntityModel {
 
     public MemberModel getHead() {
         return head;
+    }
+
+    public MemberModel getGun() {
+        return gun;
     }
 }
