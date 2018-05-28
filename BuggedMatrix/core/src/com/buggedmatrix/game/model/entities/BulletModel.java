@@ -6,15 +6,21 @@ public class BulletModel extends EntityModel {
     private final int playerID;
     private int bounces = 0;
     private boolean initial = true;
+    private final ModelType type;
 
     public BulletModel(float x, float y, int rotation, int playerID)
     {
         super(x,y,rotation);
         this.playerID = playerID;
+
+        if(playerID == 1)
+            type = ModelType.BULLET1;
+
+        else type = ModelType.BULLET2;
     }
 
     public ModelType getType() {
-        return ModelType.BULLET;
+        return type;
     }
 
     public void bounce()

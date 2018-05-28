@@ -49,6 +49,7 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load("leg2.png", Texture.class);
         this.game.getAssetManager().load("arm2.png", Texture.class);
         this.game.getAssetManager().load("bullet.png", Texture.class);
+        this.game.getAssetManager().load("bullet2.png", Texture.class);
 
         this.game.getAssetManager().finishLoading();
     }
@@ -88,6 +89,9 @@ public class GameView extends ScreenAdapter {
             debugCamera.scl(1/PIXEL_TO_METER);
             debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
         }
+
+        if(GameModel.getInstance().checkGameOver() != 0)
+            Gdx.app.exit();
     }
 
     private void handleInputs(float delta)

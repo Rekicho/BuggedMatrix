@@ -10,9 +10,8 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGTH;
 import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 
 public class GameModel {
-
-    //singleton
     private static GameModel instance;
+    private int gameover = 0;
 
     private PlayerModel playerOne;
     private PlayerModel playerTwo;
@@ -38,9 +37,9 @@ public class GameModel {
 
     private GameModel()
     {
-        playerOne = new PlayerModel(25,25, -45, 1);
+        playerOne = new PlayerModel(35,25, -45, 1);
 
-        playerTwo = new PlayerModel(65,25, -45, 2);
+        playerTwo = new PlayerModel(75,25, -45, 2);
 
         leftWall = new WallModel(0, -(MATRIX_HEIGTH + 3)/2, 0);
 
@@ -73,7 +72,7 @@ public class GameModel {
     public BulletModel getPlayerTwoBullet()
     {
         if(playerTwoBullet == null)
-            playerTwoBullet = new BulletModel(playerTwo.getLeftarm().getX(), playerTwo.getLeftarm().getY(), 0, 2);
+            playerTwoBullet = new BulletModel(playerTwo.getRightarm().getX(), playerTwo.getRightarm().getY(), 0, 2);
 
         return playerTwoBullet;
     }
@@ -111,5 +110,15 @@ public class GameModel {
             else if(((BulletModel) model).getPlayerID() == 2)
                 playerTwoBullet = null;
         }
+    }
+
+    public void endGame(int playerWon)
+    {
+        gameover = playerWon;
+    }
+
+    public int checkGameOver()
+    {
+        return gameover;
     }
 }

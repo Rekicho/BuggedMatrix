@@ -89,10 +89,7 @@ public class GameController implements ContactListener{
 
         for (Body body : bodies) {
             if (body.getUserData() instanceof BulletModel)
-            {
-                body.applyForceToCenter(0, -GRAVITY, true);
                 body.setAngularVelocity(0);
-            }
 
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
             ((EntityModel) body.getUserData()).setRotation(body.getAngle());
@@ -133,7 +130,7 @@ public class GameController implements ContactListener{
     public void bulletCollision(Body member, Body bullet)
     {
         if(((MemberModel)(member.getUserData())).getPlayerID() != ((BulletModel)(bullet.getUserData())).getPlayerID())
-            Gdx.app.exit(); //GameOver
+            GameModel.getInstance().endGame(((BulletModel)(bullet.getUserData())).getPlayerID());
 
         ((BulletModel)bullet.getUserData()).setFlaggedForRemoval(true);
     }

@@ -2,7 +2,6 @@ package com.buggedmatrix.game.view.entities;
 
 import com.buggedmatrix.game.BuggedMatrix;
 import com.buggedmatrix.game.model.entities.EntityModel;
-import com.buggedmatrix.game.model.entities.PlayerModel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +31,10 @@ public class ViewFactory {
                 cache.put(model.getType(), new MemberView(game, 7));
             else if (model.getType() == ModelType.HEAD2)
                 cache.put(model.getType(), new MemberView(game, 8));
-            else if (model.getType() == ModelType.BULLET)
-                cache.put(model.getType(), new BulletView(game));
+            else if (model.getType() == ModelType.BULLET1)
+                cache.put(model.getType(), new BulletView(game, -1));
+            else if (model.getType() == ModelType.BULLET2)
+                cache.put(model.getType(), new BulletView(game, -2));
         }
         return cache.get(model.getType());
     }

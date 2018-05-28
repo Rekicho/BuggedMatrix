@@ -2,22 +2,28 @@ package com.buggedmatrix.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.buggedmatrix.game.screens.MainMenuScreen;
 import com.buggedmatrix.game.view.GameView;
 
 
 public class BuggedMatrix extends Game {
-	private SpriteBatch batch;
+	public SpriteBatch batch;
 	private AssetManager assetManager;
+	public BitmapFont font;
 
 	public void create ()
 	{
 		batch = new SpriteBatch();
 		assetManager = new AssetManager();
-		startGame();
+		font = new BitmapFont();
+		mainMenu();
 	}
 
-    private void startGame() {
+	private void mainMenu() { setScreen(new MainMenuScreen(this));}
+
+    public void startGame() {
         setScreen(new GameView(this));
     }
 
@@ -29,7 +35,10 @@ public class BuggedMatrix extends Game {
 		return batch;
 	}
 
-	@Override
+	public void render(){
+		super.render();
+	}
+
 	public void dispose()
 	{
         batch.dispose();
