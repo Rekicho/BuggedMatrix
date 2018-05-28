@@ -189,4 +189,10 @@ public class GameController implements ContactListener{
             }
         }
     }
+
+    public static void reset()
+    {
+        instance = null;
+        GameModel.reset();
+    }
 }

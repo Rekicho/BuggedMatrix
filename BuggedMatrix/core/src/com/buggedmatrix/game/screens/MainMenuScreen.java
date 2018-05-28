@@ -29,14 +29,12 @@ public class MainMenuScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
-
-        game.batch.begin();
-        game.font.draw(game.batch, "Welcome to Drop!!! ", 100, 150);
-        game.font.draw(game.batch, "Tap anywhere to begin!", 100, 100);
-        game.batch.end();
+        game.getBatch().setProjectionMatrix(camera.combined);
+        game.getBatch().begin();
+        game.getBatch().end();
 
         if (Gdx.input.isTouched()) {
+            game.resetGame();
             game.startGame();
             dispose();
         }

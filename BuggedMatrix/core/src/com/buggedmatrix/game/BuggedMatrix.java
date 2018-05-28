@@ -9,23 +9,35 @@ import com.buggedmatrix.game.view.GameView;
 
 
 public class BuggedMatrix extends Game {
-	public SpriteBatch batch;
+	private SpriteBatch batch;
 	private AssetManager assetManager;
-	public BitmapFont font;
+	private BitmapFont font;
+	private MainMenuScreen initialMenu;
+	private GameView gameScreen;
 
 	public void create ()
 	{
 		batch = new SpriteBatch();
 		assetManager = new AssetManager();
 		font = new BitmapFont();
+
+		startScreens();
 		mainMenu();
 	}
 
-	private void mainMenu() { setScreen(new MainMenuScreen(this));}
+	public void startScreens()
+	{
+		initialMenu = new MainMenuScreen((this));
+		gameScreen = new GameView(this);
+	}
+
+	public void mainMenu() { setScreen(initialMenu);}
 
     public void startGame() {
-        setScreen(new GameView(this));
+        setScreen(gameScreen);
     }
+
+    public void resetGame() { gameScreen.reset();}
 
 	public AssetManager getAssetManager() {
 		return assetManager;

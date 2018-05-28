@@ -121,4 +121,9 @@ public class GameModel {
     {
         return gameover;
     }
+
+    public static void reset()
+    {
+        instance = null;
+    }
 }

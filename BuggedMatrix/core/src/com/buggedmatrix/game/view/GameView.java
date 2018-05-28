@@ -91,7 +91,7 @@ public class GameView extends ScreenAdapter {
         }
 
         if(GameModel.getInstance().checkGameOver() != 0)
-            Gdx.app.exit();
+            game.mainMenu();
     }
 
     private void handleInputs(float delta)
@@ -219,6 +219,11 @@ public class GameView extends ScreenAdapter {
             viewTwoBullet.update(bulletTwo);
             viewTwoBullet.draw(game.getBatch());
         }
+    }
+
+    public void reset()
+    {
+        GameController.getInstance().reset();
     }
 
 }
