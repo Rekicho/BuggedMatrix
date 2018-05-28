@@ -89,7 +89,10 @@ public class GameController implements ContactListener{
 
         for (Body body : bodies) {
             if (body.getUserData() instanceof BulletModel)
+            {
+                body.applyForceToCenter(0, -GRAVITY, true);
                 body.setAngularVelocity(0);
+            }
 
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
             ((EntityModel) body.getUserData()).setRotation(body.getAngle());
@@ -112,8 +115,6 @@ public class GameController implements ContactListener{
         {
             if(!((BulletModel)bodyB.getUserData()).isInitial())
                 bulletCollision(bodyA,bodyB);
-
-            //else bodyB.setLinearVelocity((float)(BULLET_VELOCITY*Math.cos(rotation)),(float) (BULLET_VELOCITY*Math.sin(rotation)));
         }
 
         else if(bodyA.getUserData() instanceof BulletModel && bodyB.getUserData() instanceof MemberModel)

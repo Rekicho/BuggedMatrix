@@ -16,12 +16,25 @@ public class PlayerModel extends EntityModel {
         super(x, y, rotation);
         this.playerID = playerID;
 
-        chest = new MemberModel(0, 0, 0, playerID, ModelType.CHEST);
-        leftleg = new MemberModel(0, 0, 0, playerID, ModelType.LEG);
-        rightleg = new MemberModel(0, 0, 0, playerID, ModelType.LEG);
-        leftarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM);
-        rightarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM);
-        head = new MemberModel(0, 0, 0, playerID, ModelType.HEAD);
+        if(playerID == 1)
+        {
+            chest = new MemberModel(0, 0, 0, playerID, ModelType.CHEST1);
+            leftleg = new MemberModel(0, 0, 0, playerID, ModelType.LEG1);
+            rightleg = new MemberModel(0, 0, 0, playerID, ModelType.LEG1);
+            leftarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM1);
+            rightarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM1);
+            head = new MemberModel(0, 0, 0, playerID, ModelType.HEAD1);
+        }
+
+        else
+        {
+            chest = new MemberModel(0, 0, 0, playerID, ModelType.CHEST2);
+            leftleg = new MemberModel(0, 0, 0, playerID, ModelType.LEG2);
+            rightleg = new MemberModel(0, 0, 0, playerID, ModelType.LEG2);
+            leftarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM2);
+            rightarm = new MemberModel(0, 0, 0, playerID, ModelType.ARM2);
+            head = new MemberModel(0, 0, 0, playerID, ModelType.HEAD2);
+        }
     }
 
     public ModelType getType() {
