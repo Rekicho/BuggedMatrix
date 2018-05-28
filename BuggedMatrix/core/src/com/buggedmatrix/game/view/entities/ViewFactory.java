@@ -18,20 +18,22 @@ public class ViewFactory {
         if (!cache.containsKey(model.getType())) {
             if (model.getType() == ModelType.CHEST1)
                 cache.put(model.getType(), new MemberView(game,4));
-            if (model.getType() == ModelType.LEG1)
+            else if (model.getType() == ModelType.LEG1)
                 cache.put(model.getType(), new MemberView(game,1));
-            if (model.getType() == ModelType.ARM1)
+            else if (model.getType() == ModelType.ARM1)
                 cache.put(model.getType(), new MemberView(game,2));
-            if (model.getType() == ModelType.HEAD1)
+            else if (model.getType() == ModelType.HEAD1)
                 cache.put(model.getType(), new MemberView(game, 3));
-            if (model.getType() == ModelType.CHEST2)
+            else if (model.getType() == ModelType.CHEST2)
                 cache.put(model.getType(), new MemberView(game, 5));
-            if (model.getType() == ModelType.LEG2)
+            else if (model.getType() == ModelType.LEG2)
                 cache.put(model.getType(), new MemberView(game, 6));
-            if (model.getType() == ModelType.ARM2)
+            else if (model.getType() == ModelType.ARM2)
                 cache.put(model.getType(), new MemberView(game, 7));
-            if (model.getType() == ModelType.HEAD2)
+            else if (model.getType() == ModelType.HEAD2)
                 cache.put(model.getType(), new MemberView(game, 8));
+            else if (model.getType() == ModelType.BULLET)
+                cache.put(model.getType(), new BulletView(game));
         }
         return cache.get(model.getType());
     }

@@ -10,14 +10,11 @@ import javax.swing.text.html.parser.Entity;
 import static com.buggedmatrix.game.view.GameView.PIXEL_TO_METER;
 
 public abstract class EntityView {
-
-    private int image;
-
     Sprite sprite;
+    private int bodypart;
 
-    public EntityView(BuggedMatrix game, int image) {
-
-        this.image = image;
+    public EntityView(BuggedMatrix game, int bodypart) {
+        this.bodypart = bodypart;
         sprite = createSprite(game);
     }
 
@@ -32,7 +29,8 @@ public abstract class EntityView {
         sprite.setRotation((float) Math.toDegrees(model.getRotation()));
     }
 
-    public int getImage() {
-        return image;
+    public int getBodypart()
+    {
+        return bodypart;
     }
 }

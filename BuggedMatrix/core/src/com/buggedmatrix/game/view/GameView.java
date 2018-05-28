@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.buggedmatrix.game.BuggedMatrix;
 import com.buggedmatrix.game.controller.GameController;
 import com.buggedmatrix.game.model.GameModel;
+import com.buggedmatrix.game.model.entities.BulletModel;
 import com.buggedmatrix.game.model.entities.MemberModel;
 import com.buggedmatrix.game.model.entities.PlayerModel;
 import com.buggedmatrix.game.view.entities.EntityView;
@@ -47,6 +48,7 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load("chest2.png", Texture.class);
         this.game.getAssetManager().load("leg2.png", Texture.class);
         this.game.getAssetManager().load("arm2.png", Texture.class);
+        this.game.getAssetManager().load("bullet.png", Texture.class);
 
         this.game.getAssetManager().finishLoading();
     }
@@ -56,7 +58,6 @@ public class GameView extends ScreenAdapter {
         OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER,VIEWPORT_HEIGHT / PIXEL_TO_METER);
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
-        //camera.zoom += 0.1f;
         camera.update();
 
         if (DEBUG_PHYSICS) {
@@ -197,6 +198,23 @@ public class GameView extends ScreenAdapter {
         EntityView viewTwoHead = ViewFactory.makeView(game, head2);
         viewTwoHead.update(head2);
         viewTwoHead.draw(game.getBatch());
+
+        BulletModel bulletOne = GameModel.getInstance().getBulletOne();
+        BulletModel bulletTwo = GameModel.getInstance().getBulletTwo();
+
+        if(bulletOne != null)
+        {
+            EntityView viewOneBullet = ViewFactory.makeView(game, bulletOne);
+            viewOneBullet.update(bulletOne);
+            viewOneBullet.draw(game.getBatch());
+        }
+
+        if(bulletTwo != null)
+        {
+            EntityView viewTwoBullet = ViewFactory.makeView(game, bulletTwo);
+            viewTwoBullet.update(bulletTwo);
+            viewTwoBullet.draw(game.getBatch());
+        }
     }
 
 }

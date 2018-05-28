@@ -65,11 +65,21 @@ public class GameModel {
         return playerOneBullet;
     }
 
+    public BulletModel getBulletOne()
+    {
+        return playerOneBullet;
+    }
+
     public BulletModel getPlayerTwoBullet()
     {
         if(playerTwoBullet == null)
-            playerTwoBullet = new BulletModel(playerTwo.getLeftarm().getX(),playerTwo.getLeftarm().getY(),0, 2);
+            playerTwoBullet = new BulletModel(playerTwo.getLeftarm().getX(), playerTwo.getLeftarm().getY(), 0, 2);
 
+        return playerTwoBullet;
+    }
+
+    public BulletModel getBulletTwo()
+    {
         return playerTwoBullet;
     }
 

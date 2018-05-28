@@ -11,30 +11,30 @@ public class MemberView extends EntityView {
         super(game, bodypart);
     }
 
-    @Override
     public Sprite createSprite(BuggedMatrix game) {
 
         Texture texture;
+        int bodypart = getBodypart();
 
-        if (getImage() == 4) {
+        if (bodypart == 4) {
             texture = game.getAssetManager().get("chest.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
-        } else if (getImage() == 1) {
+        } else if (bodypart == 1) {
             texture = game.getAssetManager().get("leg.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
-        } else if (getImage() == 2) {
+        } else if (bodypart == 2) {
             texture = game.getAssetManager().get("arm.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
-        } else if (getImage() == 3) {
+        } else if (bodypart == 3) {
             texture = game.getAssetManager().get("head.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
-        } else if (getImage() == 5) {
+        } else if (bodypart == 5) {
             texture = game.getAssetManager().get("chest2.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
-        } else if (getImage() == 6) {
+        } else if (bodypart == 6) {
             texture = game.getAssetManager().get("leg2.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
-        } else if (getImage() == 7) {
+        } else if (bodypart == 7) {
             texture = game.getAssetManager().get("arm2.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
         } else {
