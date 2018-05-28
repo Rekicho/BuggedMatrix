@@ -130,7 +130,7 @@ public class GameController implements ContactListener{
     public void bulletCollision(Body member, Body bullet)
     {
         if(((MemberModel)(member.getUserData())).getPlayerID() != ((BulletModel)(bullet.getUserData())).getPlayerID())
-            GameModel.getInstance().endGame(((BulletModel)(bullet.getUserData())).getPlayerID());
+            GameModel.getInstance().takeLife(((BulletModel)(bullet.getUserData())).getPlayerID());
 
         ((BulletModel)bullet.getUserData()).setFlaggedForRemoval(true);
     }
@@ -194,5 +194,11 @@ public class GameController implements ContactListener{
     {
         instance = null;
         GameModel.reset();
+    }
+
+    public static void softReset()
+    {
+        instance = null;
+        GameModel.softReset();
     }
 }

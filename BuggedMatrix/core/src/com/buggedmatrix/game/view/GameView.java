@@ -82,6 +82,7 @@ public class GameView extends ScreenAdapter {
 
         game.getBatch().begin();
         drawEntities();
+        drawLifes();
         game.getBatch().end();
 
         if (DEBUG_PHYSICS) {
@@ -92,6 +93,9 @@ public class GameView extends ScreenAdapter {
 
         if(GameModel.getInstance().checkGameOver() != 0)
             game.mainMenu();
+
+        else if(GameModel.getInstance().needsReset())
+            softReset();
     }
 
     private void handleInputs(float delta)
@@ -221,9 +225,18 @@ public class GameView extends ScreenAdapter {
         }
     }
 
-    public void reset()
+    private void drawLifes()
     {
-        GameController.getInstance().reset();
+        game.getFont().getData().setScale(10);
+        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerOneLifes()), 0, 1250);
+        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerTwoLifes()), 2400, 1250);
+    }
+
+    public void reset() { GameController.getInstance().reset(); }
+
+    public void softReset()
+    {
+        GameController.getInstance().softReset();
     }
 
 }

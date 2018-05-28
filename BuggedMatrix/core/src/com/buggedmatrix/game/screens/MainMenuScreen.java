@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.buggedmatrix.game.BuggedMatrix;
 
 public class MainMenuScreen extends ScreenAdapter {
@@ -15,13 +16,13 @@ public class MainMenuScreen extends ScreenAdapter {
         this.game = game;
         loadAssets();
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1600, 500);
+        camera.setToOrtho(false, 2500, 1250);
     }
 
     private void loadAssets()
     {
-        /*this.game.getAssetManager().load("menu.png", Texture.class);
-        this.game.getAssetManager().finishLoading();*/
+        this.game.getAssetManager().load("menu.png", Texture.class);
+        this.game.getAssetManager().finishLoading();
     }
 
     public void render(float delta) {
@@ -30,13 +31,17 @@ public class MainMenuScreen extends ScreenAdapter {
 
         camera.update();
         game.getBatch().setProjectionMatrix(camera.combined);
+
         game.getBatch().begin();
+
+        Texture background = game.getAssetManager().get("menu.png", Texture.class);
+        game.getBatch().draw(background, 0 , 0);
+
         game.getBatch().end();
 
         if (Gdx.input.isTouched()) {
             game.resetGame();
             game.startGame();
-            dispose();
         }
     }
 }

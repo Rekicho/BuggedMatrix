@@ -47,6 +47,10 @@ public class BuggedMatrix extends Game {
 		return batch;
 	}
 
+	public BitmapFont getFont() {
+		return font;
+	}
+
 	public void render(){
 		super.render();
 	}
