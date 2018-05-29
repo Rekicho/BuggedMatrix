@@ -21,7 +21,7 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGTH;
 import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 
 public class GameView extends ScreenAdapter {
-    private static final boolean DEBUG_PHYSICS = false;
+    private static final boolean DEBUG_PHYSICS = true;
     public final static float PIXEL_TO_METER = 0.04f;
     private static final float VIEWPORT_WIDTH = 100;
     private static final float VIEWPORT_HEIGHT = 50;

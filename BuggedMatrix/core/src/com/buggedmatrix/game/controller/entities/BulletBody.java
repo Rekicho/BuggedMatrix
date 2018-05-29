@@ -2,6 +2,7 @@ package com.buggedmatrix.game.controller.entities;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.buggedmatrix.game.model.entities.BulletModel;
 import com.buggedmatrix.game.model.entities.EntityModel;
 
 public class BulletBody extends EntityBody {
@@ -17,6 +18,6 @@ public class BulletBody extends EntityBody {
                 0,0, 0,height, width,0, width,height
         }, width, height, density, friction, restitution, BODY, BODY);
 
-        this.body.setLinearVelocity((float)(BULLET_VELOCITY*Math.cos(rotation)),(float) (BULLET_VELOCITY*Math.sin(rotation)));
+        this.body.setLinearVelocity((float) ((((BulletModel)model).getDirection())*(BULLET_VELOCITY*Math.cos(rotation))),(float) (BULLET_VELOCITY*Math.sin(rotation)));
     }
 }

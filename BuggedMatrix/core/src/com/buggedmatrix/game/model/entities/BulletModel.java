@@ -2,6 +2,7 @@ package com.buggedmatrix.game.model.entities;
 
 public class BulletModel extends EntityModel {
     static final private int MAX_BOUNCES = 1;
+    private final float direction;
 
     private final int playerID;
     private int bounces = 0;
@@ -13,10 +14,14 @@ public class BulletModel extends EntityModel {
         super(x,y,rotation);
         this.playerID = playerID;
 
-        if(playerID == 1)
+        if(playerID == 1) {
             type = ModelType.BULLET1;
-
-        else type = ModelType.BULLET2;
+            this.direction = 1f;
+        }
+        else {
+            type = ModelType.BULLET2;
+            this.direction = -1f;
+        }
     }
 
     public ModelType getType() {
@@ -40,5 +45,9 @@ public class BulletModel extends EntityModel {
 
         initial = false;
         return true;
+    }
+
+    public float getDirection() {
+        return direction;
     }
 }

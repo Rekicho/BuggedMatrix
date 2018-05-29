@@ -160,7 +160,7 @@ public class GameController implements ContactListener{
         if(playerOneBullet != null)
             return;
 
-        playerOneBullet = new BulletBody(world, GameModel.getInstance().getPlayerOneBullet(), GameModel.getInstance().getPlayerOne().getLeftarm().getRotation());
+        playerOneBullet = new BulletBody(world, GameModel.getInstance().getPlayerOneBullet(), GameModel.getInstance().getPlayerOne().getGun().getRotation());
     }
 
     public void PlayerTwoShoot()
@@ -168,7 +168,7 @@ public class GameController implements ContactListener{
         if(playerTwoBullet != null)
             return;
 
-        playerTwoBullet = new BulletBody(world, GameModel.getInstance().getPlayerTwoBullet(), GameModel.getInstance().getPlayerTwo().getLeftarm().getRotation());
+        playerTwoBullet = new BulletBody(world, GameModel.getInstance().getPlayerTwoBullet(), GameModel.getInstance().getPlayerTwo().getGun().getRotation());
     }
 
     public void removeFlagged()
