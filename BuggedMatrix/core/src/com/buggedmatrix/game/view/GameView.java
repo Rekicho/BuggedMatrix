@@ -21,7 +21,7 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGTH;
 import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 
 public class GameView extends ScreenAdapter {
-    private static final boolean DEBUG_PHYSICS = true;
+    private static final boolean DEBUG_PHYSICS = false;
     public final static float PIXEL_TO_METER = 0.04f;
     private static final float VIEWPORT_WIDTH = 100;
     private static final float VIEWPORT_HEIGHT = 50;
@@ -95,8 +95,10 @@ public class GameView extends ScreenAdapter {
         if(GameModel.getInstance().checkGameOver() != 0)
             game.mainMenu();
 
-        else if(GameModel.getInstance().needsReset())
+        else if(GameModel.getInstance().needsReset()) {
+
             softReset();
+        }
     }
 
     private void handleInputs(float delta)
@@ -139,6 +141,10 @@ public class GameView extends ScreenAdapter {
 
         if (Gdx.input.isKeyPressed(Input.Keys.L)) {
             GameController.getInstance().PlayerTwoShoot();
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
+
         }
     }
 
@@ -239,8 +245,8 @@ public class GameView extends ScreenAdapter {
     private void drawLifes()
     {
         game.getFont().getData().setScale(10);
-        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerOneLifes()), 0, 1250);
-        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerTwoLifes()), 2400, 1250);
+        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerOneLifes()), 750, 1200);
+        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerTwoLifes()), 1750, 1200);
     }
 
     public void reset() { GameController.getInstance().reset(); }

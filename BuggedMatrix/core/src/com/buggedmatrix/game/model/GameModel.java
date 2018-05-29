@@ -11,8 +11,8 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 
 public class GameModel {
     private static GameModel instance;
-    private static int playerOneLifes = 3;
-    private static int playerTwoLifes = 3;
+    private static int playerOneLifes = 0;
+    private static int playerTwoLifes = 0;
     boolean reset = false;
 
     private PlayerModel playerOne;
@@ -117,20 +117,20 @@ public class GameModel {
     public void takeLife(int player)
     {
         if(player == 1)
-            playerOneLifes--;
+            playerTwoLifes++;
 
         else if(player == 2)
-            playerTwoLifes--;
+            playerOneLifes++;
 
         reset = true;
     }
 
     public int checkGameOver()
     {
-        if(playerOneLifes == 0)
+        if(playerOneLifes == 3)
             return 2;
 
-        if(playerTwoLifes == 0)
+        if(playerTwoLifes == 3)
             return 1;
 
         return 0;
@@ -152,8 +152,8 @@ public class GameModel {
     public static void reset()
     {
         instance = null;
-        playerOneLifes = 3;
-        playerTwoLifes = 3;
+        playerOneLifes = 0;
+        playerTwoLifes = 0;
     }
 
     public static void softReset()

@@ -18,6 +18,6 @@ public class BulletBody extends EntityBody {
                 0,0, 0,height, width,0, width,height
         }, width, height, density, friction, restitution, BODY, BODY);
 
-        this.body.setLinearVelocity((float) ((((BulletModel)model).getDirection())*(BULLET_VELOCITY*Math.cos(rotation))),(float) (BULLET_VELOCITY*Math.sin(rotation)));
+        this.body.setLinearVelocity((float) ((((BulletModel)model).getDirection())*(BULLET_VELOCITY*Math.cos(rotation))),(float) ((((BulletModel)model).getDirection())*BULLET_VELOCITY*Math.sin(rotation)));
     }
 }
