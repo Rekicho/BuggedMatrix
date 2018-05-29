@@ -3,6 +3,7 @@ package com.buggedmatrix.game.model.entities;
 public class PlayerModel extends EntityModel {
 
     private final int playerID;
+    private float shootTime = 0;
 
     private final MemberModel leftleg;
     private final MemberModel rightleg;
@@ -46,6 +47,12 @@ public class PlayerModel extends EntityModel {
     }
 
     public int getPlayerID() { return playerID; }
+
+    public float getShootTime() { return shootTime; }
+
+    public void setShootTime(float shootTime) {
+        this.shootTime = shootTime;
+    }
 
     public MemberModel getChest() {
         return chest;

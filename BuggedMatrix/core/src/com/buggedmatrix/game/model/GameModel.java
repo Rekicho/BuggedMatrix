@@ -11,8 +11,8 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 
 public class GameModel {
     private static GameModel instance;
-    private static int playerOneLifes = 0;
-    private static int playerTwoLifes = 0;
+    private static int playerOneScore = 0;
+    private static int playerTwoScore = 0;
     boolean reset = false;
 
     private PlayerModel playerOne;
@@ -100,7 +100,11 @@ public class GameModel {
         return rightWall;
     }
 
-    public void update(float delta) {}
+    public void update(float delta)
+    {
+        playerOne.setShootTime(playerOne.getShootTime() + delta);
+        playerTwo.setShootTime(playerOne.getShootTime() + delta);
+    }
 
     public void remove(EntityModel model)
     {
@@ -114,23 +118,23 @@ public class GameModel {
         }
     }
 
-    public void takeLife(int player)
+    public void roundWin(int player)
     {
         if(player == 1)
-            playerTwoLifes++;
+            playerOneScore++;
 
         else if(player == 2)
-            playerOneLifes++;
+            playerTwoScore++;
 
         reset = true;
     }
 
     public int checkGameOver()
     {
-        if(playerOneLifes == 3)
+        if(playerOneScore >= 3)
             return 2;
 
-        if(playerTwoLifes == 3)
+        if(playerTwoScore >= 3)
             return 1;
 
         return 0;
@@ -141,19 +145,19 @@ public class GameModel {
         return reset;
     }
 
-    public static int getPlayerOneLifes() {
-        return playerOneLifes;
+    public static int getPlayerOneScore() {
+        return playerOneScore;
     }
 
-    public static int getPlayerTwoLifes() {
-        return playerTwoLifes;
+    public static int getPlayerTwoScore() {
+        return playerTwoScore;
     }
 
     public static void reset()
     {
         instance = null;
-        playerOneLifes = 0;
-        playerTwoLifes = 0;
+        playerOneScore = 0;
+        playerTwoScore = 0;
     }
 
     public static void softReset()

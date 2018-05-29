@@ -83,7 +83,7 @@ public class GameView extends ScreenAdapter {
 
         game.getBatch().begin();
         drawEntities();
-        drawLifes();
+        drawScore();
         game.getBatch().end();
 
         if (DEBUG_PHYSICS) {
@@ -141,10 +141,6 @@ public class GameView extends ScreenAdapter {
 
         if (Gdx.input.isKeyPressed(Input.Keys.L)) {
             GameController.getInstance().PlayerTwoShoot();
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
-
         }
     }
 
@@ -242,11 +238,11 @@ public class GameView extends ScreenAdapter {
         }
     }
 
-    private void drawLifes()
+    private void drawScore()
     {
         game.getFont().getData().setScale(10);
-        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerOneLifes()), 750, 1200);
-        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerTwoLifes()), 1750, 1200);
+        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerOneScore()), 750, 1200);
+        game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerTwoScore()), 1750, 1200);
     }
 
     public void reset() { GameController.getInstance().reset(); }

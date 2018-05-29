@@ -130,7 +130,7 @@ public class GameController implements ContactListener{
     public void bulletCollision(Body member, Body bullet)
     {
         if(((MemberModel)(member.getUserData())).getPlayerID() != ((BulletModel)(bullet.getUserData())).getPlayerID())
-            GameModel.getInstance().takeLife(((BulletModel)(bullet.getUserData())).getPlayerID());
+            GameModel.getInstance().roundWin(((BulletModel)(bullet.getUserData())).getPlayerID());
 
         ((BulletModel)bullet.getUserData()).setFlaggedForRemoval(true);
     }
@@ -157,7 +157,7 @@ public class GameController implements ContactListener{
 
     public void PlayerOneShoot()
     {
-        if(playerOneBullet != null)
+        if(playerOneBullet != null || ((PlayerModel)playerOne.getUserData()).getShootTime() < 3f)
             return;
 
         playerOneBullet = new BulletBody(world, GameModel.getInstance().getPlayerOneBullet(), GameModel.getInstance().getPlayerOne().getGun().getRotation());
@@ -165,7 +165,7 @@ public class GameController implements ContactListener{
 
     public void PlayerTwoShoot()
     {
-        if(playerTwoBullet != null)
+        if(playerTwoBullet != null || ((PlayerModel)playerTwo.getUserData()).getShootTime() < 3f)
             return;
 
         playerTwoBullet = new BulletBody(world, GameModel.getInstance().getPlayerTwoBullet(), GameModel.getInstance().getPlayerTwo().getGun().getRotation());
@@ -179,10 +179,16 @@ public class GameController implements ContactListener{
         {
             if (((EntityModel)body.getUserData()).isFlaggedForRemoval()) {
                 if(((BulletModel)body.getUserData()).getPlayerID() == 1)
+                {
                     playerOneBullet = null;
+                    ((PlayerModel)playerOne.getUserData()).setShootTime(0);
+                }
 
                 else if(((BulletModel)body.getUserData()).getPlayerID() == 2)
+                {
                     playerTwoBullet = null;
+                    ((PlayerModel)playerTwo.getUserData()).setShootTime(0);
+                }
 
                 GameModel.getInstance().remove((EntityModel) body.getUserData());
                 world.destroyBody(body);
