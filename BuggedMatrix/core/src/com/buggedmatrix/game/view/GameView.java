@@ -111,10 +111,10 @@ public class GameView extends ScreenAdapter {
         redTouchpad.setBounds(25, 25, 200, 200);
 
         blueTouchpad = new Touchpad(10, touchpadBlueStyle);
-        blueTouchpad.setBounds(200, 25, 200, 200);
+        blueTouchpad.setBounds(2250, 25, 200, 200);
 
         stage = new Stage();
-        stage.getViewport().update(200,200);
+        stage.getViewport().setCamera(camera);
         stage.addActor(redTouchpad);
         stage.addActor(blueTouchpad);
         Gdx.input.setInputProcessor(stage);
@@ -134,7 +134,7 @@ public class GameView extends ScreenAdapter {
         game.getBatch().begin();
         drawEntities();
         drawScore();
-        drawJoysticks();
+        stage.draw();
         game.getBatch().end();
 
         if (DEBUG_PHYSICS) {
@@ -296,11 +296,6 @@ public class GameView extends ScreenAdapter {
         game.getFont().getData().setScale(10);
         game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerOneScore()), 750, 1200);
         game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerTwoScore()), 1750, 1200);
-    }
-
-    private void drawJoysticks() {
-        redTouchpad.draw(game.getBatch(),1);
-        blueTouchpad.draw(game.getBatch(),1);
     }
 
     public void reset() { GameController.getInstance().reset(); }
