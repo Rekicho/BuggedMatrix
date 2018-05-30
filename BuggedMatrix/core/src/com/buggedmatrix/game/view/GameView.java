@@ -1,5 +1,6 @@
 package com.buggedmatrix.game.view;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -7,6 +8,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.buggedmatrix.game.BuggedMatrix;
 import com.buggedmatrix.game.controller.GameController;
 import com.buggedmatrix.game.model.GameModel;
@@ -17,18 +22,21 @@ import com.buggedmatrix.game.view.entities.EntityView;
 import com.buggedmatrix.game.view.entities.ViewFactory;
 import com.badlogic.gdx.Input;
 
-import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGTH;
-import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
-
 public class GameView extends ScreenAdapter {
     private static final boolean DEBUG_PHYSICS = false;
     public final static float PIXEL_TO_METER = 0.04f;
     private static final float VIEWPORT_WIDTH = 100;
     private static final float VIEWPORT_HEIGHT = 50;
+    private static final int PLAYER_FORCE = 2500;
     private final BuggedMatrix game;
     private final OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer;
     private Matrix4 debugCamera;
+
+    private final boolean android;
+    private Touchpad redTouchpad;
+    private Touchpad blueTouchpad;
+    private Stage stage;
 
     public GameView(BuggedMatrix game) {
 
@@ -37,6 +45,14 @@ public class GameView extends ScreenAdapter {
         loadAssets();
 
         camera = createCamera();
+
+        //if(Gdx.app.getType() == Application.ApplicationType.Android)
+        //{
+            android = true;
+            createJoysticks();
+        //}
+
+        //else android = false;
     }
 
     private void loadAssets() {
@@ -71,19 +87,54 @@ public class GameView extends ScreenAdapter {
         return camera;
     }
 
+    private void createJoysticks()
+    {
+        Skin touchpadSkin = new Skin();
+        touchpadSkin.add("RedBackground", new Texture("redjoystick.png"));
+        touchpadSkin.add("BlueBackground", new Texture("bluejoystick.png"));
+        touchpadSkin.add("joystick", new Texture("joystick.png"));
+
+        Touchpad.TouchpadStyle touchpadRedStyle = new Touchpad.TouchpadStyle();
+        Touchpad.TouchpadStyle touchpadBlueStyle = new Touchpad.TouchpadStyle();
+
+        Drawable touchRedBackground = touchpadSkin.getDrawable("RedBackground");
+        Drawable touchBlueBackground = touchpadSkin.getDrawable("BlueBackground");
+        Drawable touchKnob = touchpadSkin.getDrawable("joystick");
+
+        touchpadRedStyle.background = touchRedBackground;
+        touchpadRedStyle.knob = touchKnob;
+
+        touchpadBlueStyle.background = touchBlueBackground;
+        touchpadBlueStyle.knob = touchKnob;
+
+        redTouchpad = new Touchpad(10, touchpadRedStyle);
+        redTouchpad.setBounds(25, 25, 200, 200);
+
+        blueTouchpad = new Touchpad(10, touchpadBlueStyle);
+        blueTouchpad.setBounds(200, 25, 200, 200);
+
+        stage = new Stage();
+        stage.getViewport().update(200,200);
+        stage.addActor(redTouchpad);
+        stage.addActor(blueTouchpad);
+        Gdx.input.setInputProcessor(stage);
+    }
+
     public void render (float delta) {
-        handleInputs(delta);
-        GameController.getInstance().update(delta);
-
-        camera.update();
-        game.getBatch().setProjectionMatrix(camera.combined);
-
         Gdx.gl.glClearColor( 100/255f, 100/255f, 100/255f, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+        camera.update();
+
+        handleInputs();
+        GameController.getInstance().update(delta);
+        stage.act(delta);
+
+        game.getBatch().setProjectionMatrix(camera.combined);
 
         game.getBatch().begin();
         drawEntities();
         drawScore();
+        drawJoysticks();
         game.getBatch().end();
 
         if (DEBUG_PHYSICS) {
@@ -95,53 +146,55 @@ public class GameView extends ScreenAdapter {
         if(GameModel.getInstance().checkGameOver() != 0)
             game.mainMenu();
 
-        else if(GameModel.getInstance().needsReset()) {
-
+        else if(GameModel.getInstance().needsReset())
             softReset();
-        }
     }
 
-    private void handleInputs(float delta)
+    private void handleInputs()
     {
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            GameController.getInstance().getPlayerOne().applyForce(0,2500);
-        }
+        if(android)
+            handleJoystick();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            GameController.getInstance().getPlayerOne().applyForce(-2500, 0);
-        }
+        else handleKeyboard();
+    }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            GameController.getInstance().getPlayerOne().applyForce(2500,0);
-        }
+    private void handleKeyboard()
+    {
+        if (Gdx.input.isKeyPressed(Input.Keys.W))
+            GameController.getInstance().getPlayerOne().applyForce(0,PLAYER_FORCE);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            GameController.getInstance().getPlayerOne().applyForce(0,-2500);
-        }
+        if (Gdx.input.isKeyPressed(Input.Keys.A))
+            GameController.getInstance().getPlayerOne().applyForce(-PLAYER_FORCE, 0);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            GameController.getInstance().getPlayerTwo().applyForce(0,2500);
-        }
+        if (Gdx.input.isKeyPressed(Input.Keys.D))
+            GameController.getInstance().getPlayerOne().applyForce(PLAYER_FORCE,0);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            GameController.getInstance().getPlayerTwo().applyForce(-2500, 0);
-        }
+        if (Gdx.input.isKeyPressed(Input.Keys.S))
+            GameController.getInstance().getPlayerOne().applyForce(0,-PLAYER_FORCE);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            GameController.getInstance().getPlayerTwo().applyForce(2500,0);
-        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP))
+            GameController.getInstance().getPlayerTwo().applyForce(0,PLAYER_FORCE);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            GameController.getInstance().getPlayerTwo().applyForce(0,-2500);
-        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+            GameController.getInstance().getPlayerTwo().applyForce(-PLAYER_FORCE, 0);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.C)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+            GameController.getInstance().getPlayerTwo().applyForce(PLAYER_FORCE,0);
+
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
+            GameController.getInstance().getPlayerTwo().applyForce(0,-PLAYER_FORCE);
+
+        if (Gdx.input.isKeyPressed(Input.Keys.C))
             GameController.getInstance().PlayerOneShoot();
-        }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.L)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.L))
             GameController.getInstance().PlayerTwoShoot();
-        }
+    }
+
+    private void handleJoystick()
+    {
+        GameController.getInstance().getPlayerOne().applyForce(PLAYER_FORCE * redTouchpad.getKnobPercentX(), PLAYER_FORCE * redTouchpad.getKnobPercentY());
+        GameController.getInstance().getPlayerTwo().applyForce(PLAYER_FORCE * blueTouchpad.getKnobPercentX(), PLAYER_FORCE * blueTouchpad.getKnobPercentY());
     }
 
     private void drawEntities() {
@@ -243,6 +296,11 @@ public class GameView extends ScreenAdapter {
         game.getFont().getData().setScale(10);
         game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerOneScore()), 750, 1200);
         game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerTwoScore()), 1750, 1200);
+    }
+
+    private void drawJoysticks() {
+        redTouchpad.draw(game.getBatch(),1);
+        blueTouchpad.draw(game.getBatch(),1);
     }
 
     public void reset() { GameController.getInstance().reset(); }
