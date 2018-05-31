@@ -132,10 +132,10 @@ public class GameModel {
     public int checkGameOver()
     {
         if(playerOneScore >= 3)
-            return 2;
+            return 1;
 
         if(playerTwoScore >= 3)
-            return 1;
+            return 2;
 
         return 0;
     }

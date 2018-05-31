@@ -49,10 +49,10 @@ public class GameView extends ScreenAdapter {
 
         camera = createCamera();
 
-        //if(Gdx.app.getType() == Application.ApplicationType.Android) {
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
             android = true;
             createJoysticks();
-        //} else android = false;
+        } else android = false;
     }
 
     private void loadAssets() {
@@ -162,8 +162,10 @@ public class GameView extends ScreenAdapter {
             debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
         }
 
-        if(GameModel.getInstance().checkGameOver() != 0)
-            game.mainMenu();
+        if(GameModel.getInstance().checkGameOver() == 1)
+            game.gameOverMenu(1);
+        else if (GameModel.getInstance().checkGameOver() == 2)
+            game.gameOverMenu(2);
 
         else if(GameModel.getInstance().needsReset())
             softReset();

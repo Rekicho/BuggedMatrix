@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.buggedmatrix.game.screens.GameOverScreen;
 import com.buggedmatrix.game.screens.MainMenuScreen;
 import com.buggedmatrix.game.view.GameView;
 
@@ -32,6 +33,11 @@ public class BuggedMatrix extends Game {
 	}
 
 	public void mainMenu() { setScreen(initialMenu);}
+
+	public void gameOverMenu(int winner) {
+		GameOverScreen screen = new GameOverScreen(this, winner);
+		setScreen(screen);
+	}
 
     public void startGame() {
         setScreen(gameScreen);
