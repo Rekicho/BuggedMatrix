@@ -12,10 +12,9 @@ public class GameOverScreen extends ScreenAdapter {
     OrthographicCamera camera;
     int winner;
 
-    public GameOverScreen(BuggedMatrix game, int winner)
+    public GameOverScreen(BuggedMatrix game)
     {
         this.game = game;
-        this.winner = winner;
         loadAssets();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 2500, 1250);
@@ -23,10 +22,8 @@ public class GameOverScreen extends ScreenAdapter {
 
     private void loadAssets()
     {
-        if (winner == 1)
-            this.game.getAssetManager().load("redwon.png", Texture.class);
-        else
-            this.game.getAssetManager().load("bluewon.png", Texture.class);
+        this.game.getAssetManager().load("redwon.png", Texture.class);
+        this.game.getAssetManager().load("bluewon.png", Texture.class);
         this.game.getAssetManager().finishLoading();
     }
 
@@ -50,9 +47,12 @@ public class GameOverScreen extends ScreenAdapter {
 
         game.getBatch().end();
 
-        if (Gdx.input.isTouched()) {
-            game.resetGame();
-            game.startGame();
-        }
+        if (Gdx.input.justTouched())
+            game.mainMenu();
+    }
+
+    public void setWinner(int winner)
+    {
+        this.winner = winner;
     }
 }

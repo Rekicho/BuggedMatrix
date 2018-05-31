@@ -15,6 +15,7 @@ public class BuggedMatrix extends Game {
 	private BitmapFont font;
 	private MainMenuScreen initialMenu;
 	private GameView gameScreen;
+	private GameOverScreen gameEndMenu;
 
 	public void create ()
 	{
@@ -30,13 +31,14 @@ public class BuggedMatrix extends Game {
 	{
 		initialMenu = new MainMenuScreen((this));
 		gameScreen = new GameView(this);
+		gameEndMenu = new GameOverScreen(this);
 	}
 
 	public void mainMenu() { setScreen(initialMenu);}
 
 	public void gameOverMenu(int winner) {
-		GameOverScreen screen = new GameOverScreen(this, winner);
-		setScreen(screen);
+		gameEndMenu.setWinner(winner);
+		setScreen(gameEndMenu);
 	}
 
     public void startGame() {

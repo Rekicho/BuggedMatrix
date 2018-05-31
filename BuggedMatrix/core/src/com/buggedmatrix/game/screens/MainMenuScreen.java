@@ -39,7 +39,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
         game.getBatch().end();
 
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.justTouched()) {
             game.resetGame();
             game.startGame();
         }
