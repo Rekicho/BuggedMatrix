@@ -49,13 +49,10 @@ public class GameView extends ScreenAdapter {
 
         camera = createCamera();
 
-        //if(Gdx.app.getType() == Application.ApplicationType.Android)
-        //{
+        //if(Gdx.app.getType() == Application.ApplicationType.Android) {
             android = true;
             createJoysticks();
-        //}
-
-        //else android = false;
+        //} else android = false;
     }
 
     private void loadAssets() {
@@ -90,24 +87,14 @@ public class GameView extends ScreenAdapter {
         return camera;
     }
 
-    private void createButtons() {
-
-    }
-
     private void createJoysticks()
     {
         Skin buttonSkin = new Skin();
         buttonSkin.add("RedShoot", new Texture("shootred.png"));
         buttonSkin.add("BlueShoot", new Texture("shootblue.png"));
 
-        //Button.ButtonStyle buttonredshoot = new Button.ButtonStyle();
-        //Button.ButtonStyle buttonblueshoot = new Button.ButtonStyle();
-
         Drawable shootRedBackground = buttonSkin.getDrawable("RedShoot");
         Drawable shootBlueBackground = buttonSkin.getDrawable("BlueShoot");
-
-        //buttonredshoot.background = shootRedBackground;
-        //buttonblueshoot.setBackground(shootBlueBackground);
 
         redShoot = new Button(shootRedBackground);
         blueShoot = new Button(shootBlueBackground);
@@ -155,14 +142,17 @@ public class GameView extends ScreenAdapter {
 
         handleInputs();
         GameController.getInstance().update(delta);
-        stage.act(delta);
+        if (android) {
+            stage.act(delta);
+            stage.draw();
+        }
 
         game.getBatch().setProjectionMatrix(camera.combined);
 
         game.getBatch().begin();
         drawEntities();
         drawScore();
-        stage.draw();
+
         game.getBatch().end();
 
         if (DEBUG_PHYSICS) {
@@ -180,8 +170,10 @@ public class GameView extends ScreenAdapter {
 
     private void handleInputs()
     {
-        if(android)
+        if(android) {
             handleJoystick();
+            handleButtons();
+        }
 
         else handleKeyboard();
     }
@@ -223,6 +215,14 @@ public class GameView extends ScreenAdapter {
     {
         GameController.getInstance().getPlayerOne().applyForce(PLAYER_FORCE * redTouchpad.getKnobPercentX(), PLAYER_FORCE * redTouchpad.getKnobPercentY());
         GameController.getInstance().getPlayerTwo().applyForce(PLAYER_FORCE * blueTouchpad.getKnobPercentX(), PLAYER_FORCE * blueTouchpad.getKnobPercentY());
+    }
+
+    private void handleButtons() {
+
+        if (redShoot.getClickListener().isPressed())
+            GameController.getInstance().PlayerOneShoot();
+        if (blueShoot.getClickListener().isPressed())
+        GameController.getInstance().PlayerTwoShoot();
     }
 
     private void drawEntities() {
