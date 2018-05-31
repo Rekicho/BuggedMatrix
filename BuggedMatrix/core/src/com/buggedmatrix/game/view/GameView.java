@@ -112,6 +112,9 @@ public class GameView extends ScreenAdapter {
         redShoot = new Button(shootRedBackground);
         blueShoot = new Button(shootBlueBackground);
 
+        redShoot.setPosition(75, 260);
+        blueShoot.setPosition(2300, 260);
+
         Skin touchpadSkin = new Skin();
         touchpadSkin.add("RedBackground", new Texture("redjoystick.png"));
         touchpadSkin.add("BlueBackground", new Texture("bluejoystick.png"));
@@ -140,6 +143,8 @@ public class GameView extends ScreenAdapter {
         stage.getViewport().setCamera(camera);
         stage.addActor(redTouchpad);
         stage.addActor(blueTouchpad);
+        stage.addActor(redShoot);
+        stage.addActor(blueShoot);
         Gdx.input.setInputProcessor(stage);
     }
 
