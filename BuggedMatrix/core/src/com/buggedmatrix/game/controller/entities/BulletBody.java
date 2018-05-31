@@ -15,7 +15,7 @@ public class BulletBody extends EntityBody {
         int width = 20, height = 8;
 
         createFixture(body, new float[]{
-                0,0, 0,height, width,0, width,height
+                0,0, 0,width, height,0, height,width
         }, width, height, density, friction, restitution, BODY, BODY);
 
         this.body.setLinearVelocity((float) ((((BulletModel)model).getDirection())*(BULLET_VELOCITY*Math.cos(rotation))),(float) ((((BulletModel)model).getDirection())*BULLET_VELOCITY*Math.sin(rotation)));
