@@ -41,30 +41,20 @@ public class GameController implements ContactListener{
     private BulletBody playerOneBullet;
     private BulletBody playerTwoBullet;
 
-    private final WallBody leftWall;
-    private final WallBody rightWall;
-    private final WallBody floorWall;
-    private final WallBody ceelingWall;
-
 
     private GameController() {
         world = new World(new Vector2(0, GRAVITY), true);
 
         playerOne = new PlayerBody(world, GameModel.getInstance().getPlayerOne());
-
         playerOne.setTransform(playerOne.getX(), playerOne.getY(), GameModel.getInstance().getPlayerOne().getRotation());
 
         playerTwo = new PlayerBody(world, GameModel.getInstance().getPlayerTwo());
-
         playerTwo.setTransform(playerTwo.getX(), playerTwo.getY(), GameModel.getInstance().getPlayerTwo().getRotation());
 
-        leftWall = new WallBody(world, GameModel.getInstance().getLeftWall(), 'l');
-
-        rightWall = new WallBody(world, GameModel.getInstance().getRightWall(), 'r');
-
-        floorWall = new WallBody(world, GameModel.getInstance().getFloorWall(), 'f');
-
-        ceelingWall = new WallBody(world, GameModel.getInstance().getCeelingWall(), 'c');
+        new WallBody(world, GameModel.getInstance().getLeftWall(), 'l');
+        new WallBody(world, GameModel.getInstance().getRightWall(), 'r');
+        new WallBody(world, GameModel.getInstance().getFloorWall(), 'f');
+        new WallBody(world, GameModel.getInstance().getCeelingWall(), 'c');
 
         world.setContactListener(this);
     }

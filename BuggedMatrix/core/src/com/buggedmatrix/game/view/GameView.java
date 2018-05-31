@@ -142,19 +142,19 @@ public class GameView extends ScreenAdapter {
         camera.update();
 
         handleInputs();
-        GameController.getInstance().update(delta);
-        if (android) {
+        if (android)
             stage.act(delta);
-            stage.draw();
-        }
+        GameController.getInstance().update(delta);
 
         game.getBatch().setProjectionMatrix(camera.combined);
 
         game.getBatch().begin();
         drawEntities();
         drawScore();
-
         game.getBatch().end();
+
+        if (android)
+            stage.draw();
 
         if (DEBUG_PHYSICS) {
             debugCamera = camera.combined.cpy();
@@ -167,7 +167,7 @@ public class GameView extends ScreenAdapter {
         else if (GameModel.getInstance().checkGameOver() == 2)
             game.gameOverMenu(2);
 
-        else if(GameModel.getInstance().needsReset())
+        else if (GameModel.getInstance().needsReset())
             softReset();
     }
 
@@ -225,7 +225,7 @@ public class GameView extends ScreenAdapter {
         if (redShoot.getClickListener().isPressed())
             GameController.getInstance().PlayerOneShoot();
         if (blueShoot.getClickListener().isPressed())
-        GameController.getInstance().PlayerTwoShoot();
+            GameController.getInstance().PlayerTwoShoot();
     }
 
     private void drawEntities() {

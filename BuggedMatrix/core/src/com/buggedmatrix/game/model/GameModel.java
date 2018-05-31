@@ -22,11 +22,8 @@ public class GameModel {
     private BulletModel playerTwoBullet;
 
     private WallModel leftWall;
-
     private WallModel rightWall;
-
     private WallModel floorWall;
-
     private WallModel ceelingWall;
 
     public static GameModel getInstance() {
@@ -40,15 +37,11 @@ public class GameModel {
     private GameModel()
     {
         playerOne = new PlayerModel(35,25, -45, 1);
-
         playerTwo = new PlayerModel(75,25, -45, 2);
 
         leftWall = new WallModel(0, -(MATRIX_HEIGTH + 3)/2, 0);
-
         rightWall = new WallModel(MATRIX_WIDTH, -(MATRIX_HEIGTH + 3)/2, 0);
-
         floorWall = new WallModel(MATRIX_WIDTH/2, 0 , 0);
-
         ceelingWall = new WallModel(MATRIX_WIDTH/2, MATRIX_HEIGTH, 0);
     }
 
@@ -103,7 +96,7 @@ public class GameModel {
     public void update(float delta)
     {
         playerOne.setShootTime(playerOne.getShootTime() + delta);
-        playerTwo.setShootTime(playerOne.getShootTime() + delta);
+        playerTwo.setShootTime(playerTwo.getShootTime() + delta);
     }
 
     public void remove(EntityModel model)
@@ -120,6 +113,9 @@ public class GameModel {
 
     public void roundWin(int player)
     {
+        if (reset)
+            return;
+
         if(player == 1)
             playerOneScore++;
 
