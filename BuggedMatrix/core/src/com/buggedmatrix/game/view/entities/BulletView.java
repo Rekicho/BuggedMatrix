@@ -12,12 +12,12 @@ public class BulletView extends EntityView {
         int player = -getType();
 
         if(player == 1) {
-            Texture texture = game.getAssetManager().get("bullet.png");
+            Texture texture = game.getAssetManager().get("newbullet.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
         }
 
         else {
-            Texture texture = game.getAssetManager().get("bullet2.png");
+            Texture texture = game.getAssetManager().get("newbullet.png");
             return new Sprite(texture, texture.getWidth(), texture.getHeight());
         }
     }
