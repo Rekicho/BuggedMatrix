@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -36,6 +37,8 @@ public class GameView extends ScreenAdapter {
     private final boolean android;
     private Touchpad redTouchpad;
     private Touchpad blueTouchpad;
+    private Button redShoot;
+    private Button blueShoot;
     private Stage stage;
 
     public GameView(BuggedMatrix game) {
@@ -87,8 +90,28 @@ public class GameView extends ScreenAdapter {
         return camera;
     }
 
+    private void createButtons() {
+
+    }
+
     private void createJoysticks()
     {
+        Skin buttonSkin = new Skin();
+        buttonSkin.add("RedShoot", new Texture("shootred.png"));
+        buttonSkin.add("BlueShoot", new Texture("shootblue.png"));
+
+        //Button.ButtonStyle buttonredshoot = new Button.ButtonStyle();
+        //Button.ButtonStyle buttonblueshoot = new Button.ButtonStyle();
+
+        Drawable shootRedBackground = buttonSkin.getDrawable("RedShoot");
+        Drawable shootBlueBackground = buttonSkin.getDrawable("BlueShoot");
+
+        //buttonredshoot.background = shootRedBackground;
+        //buttonblueshoot.setBackground(shootBlueBackground);
+
+        redShoot = new Button(shootRedBackground);
+        blueShoot = new Button(shootBlueBackground);
+
         Skin touchpadSkin = new Skin();
         touchpadSkin.add("RedBackground", new Texture("redjoystick.png"));
         touchpadSkin.add("BlueBackground", new Texture("bluejoystick.png"));
