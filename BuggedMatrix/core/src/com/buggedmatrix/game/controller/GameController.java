@@ -1,6 +1,7 @@
 package com.buggedmatrix.game.controller;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -145,19 +146,22 @@ public class GameController implements ContactListener{
 
     }
 
-    public void PlayerOneShoot()
+    public void PlayerOneShoot(Sound sound)
     {
+
         if(playerOneBullet != null || ((PlayerModel)playerOne.getUserData()).getShootTime() < 3f)
             return;
 
+        sound.play(1.0f);
         playerOneBullet = new BulletBody(world, GameModel.getInstance().getPlayerOneBullet(), GameModel.getInstance().getPlayerOne().getGun().getRotation());
     }
 
-    public void PlayerTwoShoot()
+    public void PlayerTwoShoot(Sound sound)
     {
         if(playerTwoBullet != null || ((PlayerModel)playerTwo.getUserData()).getShootTime() < 3f)
             return;
 
+        sound.play(1.0f);
         playerTwoBullet = new BulletBody(world, GameModel.getInstance().getPlayerTwoBullet(), GameModel.getInstance().getPlayerTwo().getGun().getRotation());
     }
 

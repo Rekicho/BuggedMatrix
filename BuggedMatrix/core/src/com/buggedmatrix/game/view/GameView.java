@@ -3,6 +3,8 @@ package com.buggedmatrix.game.view;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -42,6 +44,14 @@ public class GameView extends ScreenAdapter {
     private Stage stage;
 
     public GameView(BuggedMatrix game) {
+
+        game.setMusic(Gdx.audio.newMusic(Gdx.files.internal("song.mp3")));
+
+        game.setSound(Gdx.audio.newSound(Gdx.files.internal("shoot.mp3")));
+
+        game.getMusic().play();
+
+        game.getSound().play(1.0f);
 
         this.game = game;
 
@@ -208,10 +218,11 @@ public class GameView extends ScreenAdapter {
             GameController.getInstance().getPlayerTwo().applyForce(0,-PLAYER_FORCE);
 
         if (Gdx.input.isKeyPressed(Input.Keys.C))
-            GameController.getInstance().PlayerOneShoot();
+            GameController.getInstance().PlayerOneShoot(game.getSound());
 
-        if (Gdx.input.isKeyPressed(Input.Keys.L))
-            GameController.getInstance().PlayerTwoShoot();
+        if (Gdx.input.isKeyPressed(Input.Keys.L)) {
+            GameController.getInstance().PlayerTwoShoot(game.getSound());
+        }
     }
 
     private void handleJoystick()
@@ -223,9 +234,9 @@ public class GameView extends ScreenAdapter {
     private void handleButtons() {
 
         if (redShoot.getClickListener().isPressed())
-            GameController.getInstance().PlayerOneShoot();
+            GameController.getInstance().PlayerOneShoot(game.getSound());
         if (blueShoot.getClickListener().isPressed())
-            GameController.getInstance().PlayerTwoShoot();
+            GameController.getInstance().PlayerTwoShoot(game.getSound());
     }
 
     private void drawEntities() {

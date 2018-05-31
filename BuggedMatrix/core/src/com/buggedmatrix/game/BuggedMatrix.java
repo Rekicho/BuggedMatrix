@@ -2,6 +2,8 @@ package com.buggedmatrix.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.buggedmatrix.game.screens.GameOverScreen;
@@ -16,9 +18,12 @@ public class BuggedMatrix extends Game {
 	private MainMenuScreen initialMenu;
 	private GameView gameScreen;
 	private GameOverScreen gameEndMenu;
+    private Music music;
+    private Sound sound;
 
 	public void create ()
 	{
+
 		batch = new SpriteBatch();
 		assetManager = new AssetManager();
 		font = new BitmapFont();
@@ -67,6 +72,24 @@ public class BuggedMatrix extends Game {
 	{
         batch.dispose();
 		assetManager.dispose();
+		music.dispose();
+		sound.dispose();
+
 	}
 
+    public void setMusic(Music music) {
+        this.music = music;
+    }
+
+    public void setSound(Sound sound) {
+        this.sound = sound;
+    }
+
+    public Music getMusic() {
+        return music;
+    }
+
+    public Sound getSound() {
+        return sound;
+    }
 }
