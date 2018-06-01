@@ -9,8 +9,7 @@ public class BulletModel extends EntityModel {
     private boolean initial = true;
     private final ModelType type;
 
-    public BulletModel(float x, float y, int rotation, int playerID)
-    {
+    public BulletModel(float x, float y, int rotation, int playerID) {
         super(x,y,rotation);
         this.playerID = playerID;
 
@@ -28,8 +27,7 @@ public class BulletModel extends EntityModel {
         return type;
     }
 
-    public void bounce()
-    {
+    public void bounce() {
         bounces++;
 
         if(bounces > MAX_BOUNCES)
@@ -38,13 +36,12 @@ public class BulletModel extends EntityModel {
 
     public int getPlayerID() { return playerID; }
 
-    public boolean isInitial()
-    {
-        if(!initial)
-            return false;
+    public boolean isInitial() {
+        return initial;
+    }
 
-        initial = false;
-        return true;
+    public void setInitial(boolean initial) {
+        this.initial = initial;
     }
 
     public float getDirection() {

@@ -80,7 +80,10 @@ public class GameController implements ContactListener{
 
         for (Body body : bodies) {
             if (body.getUserData() instanceof BulletModel)
+            {
                 body.setAngularVelocity(0);
+                ((BulletModel)body.getUserData()).setInitial(false);
+            }
 
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
             ((EntityModel) body.getUserData()).setRotation(body.getAngle());
