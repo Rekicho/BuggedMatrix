@@ -83,13 +83,10 @@ public class GameController implements ContactListener{
         for (Body body : bodies) {
             if (body.getUserData() instanceof BulletModel)
             {
-                body.setAngularVelocity(0);
                 if(((BulletModel)body.getUserData()).isInitial())
                 {
                     ((BulletModel)body.getUserData()).setInitial(false);
-                    body.setLinearVelocity(
-                            (float) (BULLET_VELOCITY*Math.cos(body.getLinearVelocity().angleRad())),
-                            (float) (BULLET_VELOCITY*Math.sin(body.getLinearVelocity().angleRad())));
+                    fixBulletVelocity(body);
                 }
             }
 
@@ -144,7 +141,14 @@ public class GameController implements ContactListener{
 
     @Override
     public void endContact(Contact contact) {
+        Body bodyA = contact.getFixtureA().getBody();
+        Body bodyB = contact.getFixtureB().getBody();
 
+        if(bodyA.getUserData() instanceof WallModel && bodyB.getUserData() instanceof BulletModel)
+            fixBulletVelocity(bodyB);
+
+        else if(bodyA.getUserData() instanceof BulletModel && bodyB.getUserData() instanceof WallModel)
+            fixBulletVelocity(bodyA);
     }
 
     @Override
@@ -201,15 +205,21 @@ public class GameController implements ContactListener{
         }
     }
 
-    public static void reset()
-    {
+    public static void reset() {
         instance = null;
         GameModel.reset();
     }
 
-    public static void softReset()
-    {
+    public static void softReset() {
         instance = null;
         GameModel.softReset();
+    }
+
+    public void fixBulletVelocity (Body bullet)
+    {
+        bullet.setAngularVelocity(0);
+        bullet.setLinearVelocity(
+                (float) (BULLET_VELOCITY*Math.cos(bullet.getLinearVelocity().angleRad())),
+                (float) (BULLET_VELOCITY*Math.sin(bullet.getLinearVelocity().angleRad())));
     }
 }

@@ -12,13 +12,13 @@ public class BulletBody extends EntityBody {
         super(world, model, BodyDef.BodyType.DynamicBody);
 
         float density = 1f, friction = 0.5f, restitution = 1f;
-        int width = 20, height = 8;
+        int width = 8, height = 20;
 
         createFixture(body, new float[]{
                 0,0, 0,width, height,0, height,width
         }, width, height, density, friction, restitution, BODY, BODY);
 
-        this.body.setTransform(this.body.getPosition().x, this.body.getPosition().y, - (((BulletModel)model).getDirection()) * (rotation + (float) (Math.PI / 4f)));
+        this.body.setTransform(this.body.getPosition().x, this.body.getPosition().y, rotation);
         this.body.setLinearVelocity((float) ((((BulletModel)model).getDirection())*BULLET_VELOCITY*Math.cos(rotation)),(float) ((((BulletModel)model).getDirection())*BULLET_VELOCITY*Math.sin(rotation)));
     }
 }
