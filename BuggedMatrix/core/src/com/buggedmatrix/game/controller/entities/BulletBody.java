@@ -6,7 +6,7 @@ import com.buggedmatrix.game.model.entities.BulletModel;
 import com.buggedmatrix.game.model.entities.EntityModel;
 
 public class BulletBody extends EntityBody {
-    static final int BULLET_VELOCITY = 1000;
+    public static final int BULLET_VELOCITY = 1000;
 
     public BulletBody(World world, EntityModel model, float rotation) {
         super(world, model, BodyDef.BodyType.DynamicBody);
@@ -18,7 +18,7 @@ public class BulletBody extends EntityBody {
                 0,0, 0,width, height,0, height,width
         }, width, height, density, friction, restitution, BODY, BODY);
 
-        this.body.setTransform(this.body.getPosition().x, this.body.getPosition().y, - (((BulletModel)model).getDirection()) * (rotation + (float) (Math.PI / 4)));
-        this.body.setLinearVelocity((float) ((((BulletModel)model).getDirection())*(BULLET_VELOCITY*Math.cos(rotation))),(float) ((((BulletModel)model).getDirection())*BULLET_VELOCITY*Math.sin(rotation)));
+        this.body.setTransform(this.body.getPosition().x, this.body.getPosition().y, - (((BulletModel)model).getDirection()) * (rotation + (float) (Math.PI / 4f)));
+        this.body.setLinearVelocity((float) ((((BulletModel)model).getDirection())*BULLET_VELOCITY*Math.cos(rotation)),(float) ((((BulletModel)model).getDirection())*BULLET_VELOCITY*Math.sin(rotation)));
     }
 }

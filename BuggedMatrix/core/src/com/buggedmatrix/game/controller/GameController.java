@@ -25,6 +25,8 @@ import com.buggedmatrix.game.model.entities.WallModel;
 
 import java.lang.reflect.Member;
 
+import static com.buggedmatrix.game.controller.entities.BulletBody.BULLET_VELOCITY;
+
 public class GameController implements ContactListener{
 
     private static GameController instance;
@@ -82,7 +84,13 @@ public class GameController implements ContactListener{
             if (body.getUserData() instanceof BulletModel)
             {
                 body.setAngularVelocity(0);
-                ((BulletModel)body.getUserData()).setInitial(false);
+                if(((BulletModel)body.getUserData()).isInitial())
+                {
+                    ((BulletModel)body.getUserData()).setInitial(false);
+                    body.setLinearVelocity(
+                            (float) (BULLET_VELOCITY*Math.cos(body.getLinearVelocity().angleRad())),
+                            (float) (BULLET_VELOCITY*Math.sin(body.getLinearVelocity().angleRad())));
+                }
             }
 
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
