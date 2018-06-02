@@ -15,7 +15,7 @@ public class TestGameModel {
         assertNotNull(GameModel.getInstance().getLeftWall());
         assertNotNull(GameModel.getInstance().getRightWall());
         assertNotNull(GameModel.getInstance().getFloorWall());
-        assertNotNull(GameModel.getInstance().getCeelingWall());
+        assertNotNull(GameModel.getInstance().getCeilingWall());
         assertNull(GameModel.getInstance().getBulletOne());
         assertNull(GameModel.getInstance().getBulletTwo());
     }

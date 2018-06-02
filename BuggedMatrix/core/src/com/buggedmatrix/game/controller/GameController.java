@@ -87,7 +87,7 @@ public class GameController implements ContactListener{
         new WallBody(world, GameModel.getInstance().getLeftWall(), 'l');
         new WallBody(world, GameModel.getInstance().getRightWall(), 'r');
         new WallBody(world, GameModel.getInstance().getFloorWall(), 'f');
-        new WallBody(world, GameModel.getInstance().getCeelingWall(), 'c');
+        new WallBody(world, GameModel.getInstance().getCeilingWall(), 'c');
 
         world.setContactListener(this);
     }
