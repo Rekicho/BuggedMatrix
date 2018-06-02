@@ -5,9 +5,22 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.buggedmatrix.game.model.entities.BulletModel;
 import com.buggedmatrix.game.model.entities.EntityModel;
 
+/**
+ * A concrete representation of an EntityBody representing a bullet.
+ */
 public class BulletBody extends EntityBody {
+
+    /**
+     * Bullet's shoot velocity
+     */
     public static final int BULLET_VELOCITY = 1000;
 
+    /**
+     * Constructs a bullet body according to bullet model
+     * @param world the physical world this bullet belongs to.
+     * @param model the model representing this bullet.
+     * @param rotation bullet'r rotation
+     */
     public BulletBody(World world, EntityModel model, float rotation) {
         super(world, model, BodyDef.BodyType.DynamicBody);
 

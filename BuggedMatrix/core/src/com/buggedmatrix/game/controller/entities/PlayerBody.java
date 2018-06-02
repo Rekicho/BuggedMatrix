@@ -9,16 +9,51 @@ import com.buggedmatrix.game.model.entities.PlayerModel;
 
 import static com.buggedmatrix.game.view.GameView.PIXEL_TO_METER;
 
+/**
+ * A concrete representation of an EntityBody representing a player.
+ */
 public class PlayerBody extends EntityBody {
 
+    /**
+     * Player's left leg
+     */
     private final MemberBody leftleg;
+
+    /**
+     * Player's right leg
+     */
     private final MemberBody rightleg;
+
+    /**
+     * Player's left arm
+     */
     private final MemberBody leftarm;
+
+    /**
+     * Player's right arm
+     */
     private final MemberBody rightarm;
+
+    /**
+     * Player's chest
+     */
     private final MemberBody chest;
+
+    /**
+     * Player's head
+     */
     private final MemberBody head;
+
+    /**
+     * Player's gun
+     */
     private final MemberBody gun;
 
+    /**
+     * Constructs a player body according to player model
+     * @param world the physical world this player belongs to.
+     * @param model the model representing this player.
+     */
     public PlayerBody(World world, EntityModel model) {
         super(world, model, BodyDef.BodyType.DynamicBody);
 
@@ -137,6 +172,11 @@ public class PlayerBody extends EntityBody {
         world.createJoint(gungrip2);
     }
 
+    /**
+     * Apply force to player's centre
+     * @param forcex force x-axis
+     * @param forcey force y-axis
+     */
     public void applyForce(float forcex, float forcey)
     {
         chest.applyForceToCenter(forcex,forcey,true);

@@ -8,8 +8,17 @@ import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGHT;
 import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 import static com.buggedmatrix.game.view.GameView.PIXEL_TO_METER;
 
+/**
+ * A concrete representation of an EntityBody representing a wall.
+ */
 public class WallBody extends EntityBody {
 
+    /**
+     * Constructs a wall body according to wall model
+     * @param world the physical world this wall belongs to.
+     * @param model the model representing this wall.
+     * @param orientation wall's orientation
+     */
     public WallBody(World world, EntityModel model, char orientation) {
         super(world, model, BodyDef.BodyType.StaticBody);
 

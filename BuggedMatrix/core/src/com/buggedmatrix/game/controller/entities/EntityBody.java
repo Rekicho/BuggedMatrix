@@ -12,11 +12,25 @@ import java.awt.geom.RectangularShape;
 
 import static com.buggedmatrix.game.view.GameView.PIXEL_TO_METER;
 
+/**
+ * Wrapper class that represents an abstract physical
+ * body supported by a Box2D body.
+ */
 public class EntityBody {
 
     final static short BODY = 0x0001;
+
+    /**
+     * The Box2D body that supports this body.
+     */
     final Body body;
 
+    /**
+     * Constructs a body representing a model in a certain world.
+     *
+     * @param world The world this body lives on.
+     * @param model The model representing the body.
+     */
     public EntityBody(World world, EntityModel model, BodyDef.BodyType type) {
 
         BodyDef bodyDef = new BodyDef();
