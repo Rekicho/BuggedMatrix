@@ -8,6 +8,9 @@ import java.util.Map;
 
 import static com.buggedmatrix.game.model.entities.EntityModel.ModelType;
 
+/**
+ * A factory for EntityView objects with cache
+ */
 public class ViewFactory {
 
     private static Map<EntityModel.ModelType, EntityView> cache =

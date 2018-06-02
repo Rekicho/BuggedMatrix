@@ -25,24 +25,93 @@ import com.buggedmatrix.game.view.entities.EntityView;
 import com.buggedmatrix.game.view.entities.ViewFactory;
 import com.badlogic.gdx.Input;
 
+/**
+ * A view representing the game screen. Draws all the other views and
+ * controls the camera.
+ */
 public class GameView extends ScreenAdapter {
+
+    /**
+     * Used to debug the position of the physics fixtures
+     */
     private static final boolean DEBUG_PHYSICS = false;
+
+    /**
+     * How much meters does a pixel represent.
+     */
     public final static float PIXEL_TO_METER = 0.04f;
+
+    /**
+     * The width of the viewport in meters.
+     */
     private static final float VIEWPORT_WIDTH = 100;
+
+    /**
+     * The height of the viewport in meters.
+     */
     private static final float VIEWPORT_HEIGHT = 50;
+
+    /**
+     * Force acting on player
+     */
     private static final int PLAYER_FORCE = 2500;
+
+    /**
+     * The game this screen belongs to.
+     */
     private final BuggedMatrix game;
+
+    /**
+     * The camera used to show the viewport.
+     */
     private final OrthographicCamera camera;
+
+    /**
+     * A renderer used to debug the physical fixtures.
+     */
     private Box2DDebugRenderer debugRenderer;
+
+    /**
+     * The transformation matrix used to transform meters into
+     * pixels in order to show fixtures in their correct places.
+     */
     private Matrix4 debugCamera;
 
+    /**
+     * Is on desktop or android?
+     */
     private final boolean android;
+
+    /**
+     * Red touchpad for android
+     */
     private Touchpad redTouchpad;
+
+    /**
+     * Blue touchpad for android
+     */
     private Touchpad blueTouchpad;
+
+    /**
+     * Red shoot button for android
+     */
     private Button redShoot;
+
+    /**
+     * Blue shoot button for android
+     */
     private Button blueShoot;
+
+    /**
+     * Android stage
+     */
     private Stage stage;
 
+    /**
+     * Creates this screen.
+     *
+     * @param game The game this screen belongs to
+     */
     public GameView(BuggedMatrix game) {
 
         game.setMusic(Gdx.audio.newMusic(Gdx.files.internal("song.mp3")));
@@ -65,6 +134,9 @@ public class GameView extends ScreenAdapter {
         } else android = false;
     }
 
+    /**
+     * Loads the assets needed by this screen.
+     */
     private void loadAssets() {
         this.game.getAssetManager().load("head.png", Texture.class);
         this.game.getAssetManager().load("chest.png", Texture.class);
@@ -82,6 +154,11 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().finishLoading();
     }
 
+    /**
+     * Creates the camera used to show the viewport.
+     *
+     * @return the camera
+     */
     private OrthographicCamera createCamera() {
 
         OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER,VIEWPORT_HEIGHT / PIXEL_TO_METER);
@@ -98,6 +175,9 @@ public class GameView extends ScreenAdapter {
         return camera;
     }
 
+    /**
+     * Create Android controllers
+     */
     private void createJoysticks()
     {
         Skin buttonSkin = new Skin();
@@ -146,6 +226,11 @@ public class GameView extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
     }
 
+    /**
+     * Renders this screen.
+     *
+     * @param delta time since last renders in seconds.
+     */
     public void render (float delta) {
         Gdx.gl.glClearColor( 100/255f, 100/255f, 100/255f, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
@@ -181,6 +266,9 @@ public class GameView extends ScreenAdapter {
             softReset();
     }
 
+    /**
+     * Handles any inputs and passes them to the controller (desktop).
+     */
     private void handleInputs()
     {
         if(android) {
@@ -225,12 +313,18 @@ public class GameView extends ScreenAdapter {
         }
     }
 
+    /**
+     * Handles android joysticks
+     */
     private void handleJoystick()
     {
         GameController.getInstance().getPlayerOne().applyForce(PLAYER_FORCE * redTouchpad.getKnobPercentX(), PLAYER_FORCE * redTouchpad.getKnobPercentY());
         GameController.getInstance().getPlayerTwo().applyForce(PLAYER_FORCE * blueTouchpad.getKnobPercentX(), PLAYER_FORCE * blueTouchpad.getKnobPercentY());
     }
 
+    /**
+     * Handles android buttons
+     */
     private void handleButtons() {
 
         if (redShoot.getClickListener().isPressed())
@@ -239,6 +333,9 @@ public class GameView extends ScreenAdapter {
             GameController.getInstance().PlayerTwoShoot(game.getSound());
     }
 
+    /**
+     * Draws the entities to the screen.
+     */
     private void drawEntities() {
         PlayerModel playerOne = GameModel.getInstance().getPlayerOne();
         PlayerModel playerTwo = GameModel.getInstance().getPlayerTwo();
@@ -333,6 +430,9 @@ public class GameView extends ScreenAdapter {
         }
     }
 
+    /**
+     * Draws score on screen
+     */
     private void drawScore()
     {
         game.getFont().getData().setScale(10);
@@ -340,8 +440,14 @@ public class GameView extends ScreenAdapter {
         game.getFont().draw(game.getBatch(), Integer.toString(GameModel.getInstance().getPlayerTwoScore()), 1750, 1200);
     }
 
+    /**
+     * Resets game controller instance
+     */
     public void reset() { GameController.getInstance().reset(); }
 
+    /**
+     * Soft-Resets game controller instance
+     */
     public void softReset()
     {
         GameController.getInstance().softReset();

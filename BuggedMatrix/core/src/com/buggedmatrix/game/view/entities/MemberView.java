@@ -7,10 +7,24 @@ import com.buggedmatrix.game.BuggedMatrix;
 
 public class MemberView extends EntityView {
 
+    /**
+     * Constructs a member view.
+     *
+     * @param game the game this view belongs to. Needed to access the
+     *             asset manager to get textures.
+     * @param bodypart type of body
+     */
     public MemberView(BuggedMatrix game, int bodypart) {
         super(game, bodypart);
     }
 
+    /**
+     * Creates a sprite representing this member.
+     *
+     * @param game the game this view belongs to. Needed to access the
+     *             asset manager to get textures.
+     * @return the sprite representing this member
+     */
     public Sprite createSprite(BuggedMatrix game) {
 
         Texture texture;
