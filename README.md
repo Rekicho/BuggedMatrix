@@ -116,5 +116,17 @@ AI:
 - (Online) Testing if both player have responses in reasonable time and that we are able to sync them
 
 ### User Manual
-1. Touch screen to begin
+1. Touch screen to begin.
 ![MainScren](https://imgur.com/oAn6Olm.png)
+
+On Desktop:
+2. Press W, A, S and D to move player 1 and C to shoot. Use the arrows to move player 2 and L to shoot.
+![DesktopGame](https://imgur.com/OIbI70z.png)
+
+On Android:
+2. Use the joysticks and the buttons to move and shoot.
+![AndroidGame](https://imgur.com/kThH4xA.png)
+
+3.
+Shoot the other player 3 times to win.
+![EndGame](https://imgur.com/cF6eqXz.png)
