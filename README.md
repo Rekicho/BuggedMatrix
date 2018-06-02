@@ -114,3 +114,7 @@ AI:
 - Both players are able to win
 - The game is even (both players have ~50% chance of winning)
 - (Online) Testing if both player have responses in reasonable time and that we are able to sync them
+
+### User Manual
+1. Touch screen to begin
+https://imgur.com/a/VhJSuEE
