@@ -117,4 +117,4 @@ AI:
 
 ### User Manual
 1. Touch screen to begin
-https://imgur.com/a/VhJSuEE
+![MainScren](https://imgur.com/a/VhJSuEE)
