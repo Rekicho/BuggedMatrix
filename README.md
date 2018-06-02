@@ -119,12 +119,15 @@ AI:
 1. Touch screen to begin.
 ![MainScren](https://imgur.com/oAn6Olm.png)
 
+2.
 On Desktop:
-2. Press W, A, S and D to move player 1 and C to shoot. Use the arrows to move player 2 and L to shoot.
+
+Press W, A, S and D to move player 1 and C to shoot. Use the arrows to move player 2 and L to shoot.
 ![DesktopGame](https://imgur.com/OIbI70z.png)
 
 On Android:
-2. Use the joysticks and the buttons to move and shoot.
+
+Use the joysticks and the buttons to move and shoot.
 ![AndroidGame](https://imgur.com/kThH4xA.png)
 
 3.
