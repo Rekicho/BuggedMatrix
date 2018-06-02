@@ -1,16 +1,12 @@
 package com.buggedmatrix.game.controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.buggedmatrix.game.controller.entities.BulletBody;
@@ -22,8 +18,6 @@ import com.buggedmatrix.game.model.entities.EntityModel;
 import com.buggedmatrix.game.model.entities.MemberModel;
 import com.buggedmatrix.game.model.entities.PlayerModel;
 import com.buggedmatrix.game.model.entities.WallModel;
-
-import java.lang.reflect.Member;
 
 import static com.buggedmatrix.game.controller.entities.BulletBody.BULLET_VELOCITY;
 
@@ -163,7 +157,6 @@ public class GameController implements ContactListener{
 
     public void PlayerOneShoot(Sound sound)
     {
-
         if(playerOneBullet != null || ((PlayerModel)playerOne.getUserData()).getShootTime() < 3f)
             return;
 
@@ -221,5 +214,13 @@ public class GameController implements ContactListener{
         bullet.setLinearVelocity(
                 (float) (BULLET_VELOCITY*Math.cos(bullet.getLinearVelocity().angleRad())),
                 (float) (BULLET_VELOCITY*Math.sin(bullet.getLinearVelocity().angleRad())));
+    }
+
+    public BulletBody getPlayerOneBullet() {
+        return playerOneBullet;
+    }
+
+    public BulletBody getPlayerTwoBullet() {
+        return playerTwoBullet;
     }
 }

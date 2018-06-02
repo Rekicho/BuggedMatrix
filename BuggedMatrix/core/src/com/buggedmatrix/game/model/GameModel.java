@@ -1,6 +1,5 @@
 package com.buggedmatrix.game.model;
 
-import com.buggedmatrix.game.controller.entities.PlayerBody;
 import com.buggedmatrix.game.model.entities.BulletModel;
 import com.buggedmatrix.game.model.entities.EntityModel;
 import com.buggedmatrix.game.model.entities.PlayerModel;

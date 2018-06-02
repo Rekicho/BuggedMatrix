@@ -8,7 +8,12 @@ import org.junit.runner.RunWith;
 public class TestGameController {
 
     @Test
-    public void constructor() {
+    public void testConstructor() {
         assertNotNull(GameController.getInstance());
+        assertNotNull(GameController.getInstance().getWorld());
+        assertNotNull(GameController.getInstance().getPlayerOne());
+        assertNotNull(GameController.getInstance().getPlayerTwo());
+        assertNull(GameController.getInstance().getPlayerOneBullet());
+        assertNull(GameController.getInstance().getPlayerTwoBullet());
     }
 }
