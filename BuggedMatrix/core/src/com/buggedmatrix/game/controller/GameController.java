@@ -21,24 +21,60 @@ import com.buggedmatrix.game.model.entities.WallModel;
 
 import static com.buggedmatrix.game.controller.entities.BulletBody.BULLET_VELOCITY;
 
+/**
+ * Controls the physics aspect of the game.
+ */
+
 public class GameController implements ContactListener{
 
+    /**
+     * The singleton instance of this controller
+     */
     private static GameController instance;
 
+    /**
+     * The world width in meters.
+     */
     public static final float MATRIX_WIDTH = 100;
-    public static final float MATRIX_HEIGTH = 50;
 
+    /**
+     * The world height in meters.
+     */
+    public static final float MATRIX_HEIGHT = 50;
+
+    /**
+     * World gravity
+     */
     private static final float GRAVITY = -15f;
 
+    /**
+     * World
+     */
     private final World world;
 
+    /**
+     * Player one dummy
+     */
     private final PlayerBody playerOne;
+
+    /**
+     * Player two dummy
+     */
     private final PlayerBody playerTwo;
 
+    /**
+     * Player one bullet
+     */
     private BulletBody playerOneBullet;
+
+    /**
+     * Player two bullet
+     */
     private BulletBody playerTwoBullet;
 
-
+    /**
+     * Creates a new GameController that controls the physics of a certain GameModel.
+     */
     private GameController() {
         world = new World(new Vector2(0, GRAVITY), true);
 
@@ -56,6 +92,10 @@ public class GameController implements ContactListener{
         world.setContactListener(this);
     }
 
+    /**
+     * Returns a singleton instance of a game controller
+     * @return the singleton instance
+     */
     public static GameController getInstance() {
 
         if(instance == null) {
@@ -64,6 +104,10 @@ public class GameController implements ContactListener{
         return instance;
     }
 
+    /**
+     * Calculates the next physics step of duration delta (in seconds).
+     * @param delta The size of this physics step in seconds.
+     */
     public void update(float delta) {
         GameModel.getInstance().update(delta);
 
@@ -89,14 +133,34 @@ public class GameController implements ContactListener{
         }
     }
 
+
+    /**
+     * Get world
+     * @return world
+     */
     public World getWorld() {
         return world;
     }
 
+
+    /**
+     * Get player one
+     * @return player one
+     */
     public PlayerBody getPlayerOne() {return playerOne; }
 
+    /**
+     * Get player two
+     * @return player two
+     */
     public PlayerBody getPlayerTwo() {return playerTwo; }
 
+
+    /**
+     * A contact between two objects was detected
+     *
+     * @param contact the detected contact
+     */
     public void beginContact(Contact contact) {
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
@@ -155,6 +219,10 @@ public class GameController implements ContactListener{
 
     }
 
+    /**
+     * Player one wants to shoot a bullet
+     * @param sound sound shooting
+     */
     public void PlayerOneShoot(Sound sound)
     {
         if(playerOneBullet != null || ((PlayerModel)playerOne.getUserData()).getShootTime() < 3f)
@@ -164,6 +232,10 @@ public class GameController implements ContactListener{
         playerOneBullet = new BulletBody(world, GameModel.getInstance().getPlayerOneBullet(), GameModel.getInstance().getPlayerOne().getGun().getRotation());
     }
 
+    /**
+     * Player two wants to shoot a bullet
+     * @param sound sound shooting
+     */
     public void PlayerTwoShoot(Sound sound)
     {
         if(playerTwoBullet != null || ((PlayerModel)playerTwo.getUserData()).getShootTime() < 3f)
@@ -173,6 +245,10 @@ public class GameController implements ContactListener{
         playerTwoBullet = new BulletBody(world, GameModel.getInstance().getPlayerTwoBullet(), GameModel.getInstance().getPlayerTwo().getGun().getRotation());
     }
 
+    /**
+     * Removes objects that have been flagged for removal on the
+     * previous step.
+     */
     public void removeFlagged()
     {
         Array<Body> bodies = new Array<Body>();
@@ -198,16 +274,26 @@ public class GameController implements ContactListener{
         }
     }
 
+    /**
+     * Deletes instance and resets Game Model
+     */
     public static void reset() {
         instance = null;
         GameModel.reset();
     }
 
+    /**
+     * Deletes instance and soft-resets Game Model
+     */
     public static void softReset() {
         instance = null;
         GameModel.softReset();
     }
 
+    /**
+     * Set bullet velocity
+     * @param bullet bullet
+     */
     public void fixBulletVelocity (Body bullet)
     {
         bullet.setAngularVelocity(0);
@@ -216,10 +302,18 @@ public class GameController implements ContactListener{
                 (float) (BULLET_VELOCITY*Math.sin(bullet.getLinearVelocity().angleRad())));
     }
 
+    /**
+     * Get player one bullet
+     * @return player one bullet
+     */
     public BulletBody getPlayerOneBullet() {
         return playerOneBullet;
     }
 
+    /**
+     * Get player two bullet
+     * @return player two bullet
+     */
     public BulletBody getPlayerTwoBullet() {
         return playerTwoBullet;
     }

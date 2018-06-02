@@ -5,7 +5,7 @@ import com.buggedmatrix.game.model.entities.EntityModel;
 import com.buggedmatrix.game.model.entities.PlayerModel;
 import com.buggedmatrix.game.model.entities.WallModel;
 
-import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGTH;
+import static com.buggedmatrix.game.controller.GameController.MATRIX_HEIGHT;
 import static com.buggedmatrix.game.controller.GameController.MATRIX_WIDTH;
 
 public class GameModel {
@@ -38,10 +38,10 @@ public class GameModel {
         playerOne = new PlayerModel(35,25, -45, 1);
         playerTwo = new PlayerModel(75,25, -45, 2);
 
-        leftWall = new WallModel(0, -(MATRIX_HEIGTH + 3)/2, 0);
-        rightWall = new WallModel(MATRIX_WIDTH, -(MATRIX_HEIGTH + 3)/2, 0);
+        leftWall = new WallModel(0, -(MATRIX_HEIGHT + 3)/2, 0);
+        rightWall = new WallModel(MATRIX_WIDTH, -(MATRIX_HEIGHT + 3)/2, 0);
         floorWall = new WallModel(MATRIX_WIDTH/2, 0 , 0);
-        ceelingWall = new WallModel(MATRIX_WIDTH/2, MATRIX_HEIGTH, 0);
+        ceelingWall = new WallModel(MATRIX_WIDTH/2, MATRIX_HEIGHT, 0);
     }
 
     public PlayerModel getPlayerOne() {
