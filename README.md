@@ -1,6 +1,26 @@
 # Bugged-Matrix
 1 vs 1 Arena Shooter Game - but with bad physics and bad controls
 
+## Setup/Installation
+
+### Game
+
+To run the game on Desktop, just download BuggedMatrix-Desktop.jar and execute it (be sure to have JRE installed).
+To run the game on Android, download BuggedMatrix-Android.apk, execute it and it will install the game (you may need to allow "Install from other sources" on your Android definitions if you haven't done it already) and then just execute the app called BuggedMatrix.
+To run the HTML version, put all the files in BuggedMatrix-HTML on a web server (or localhost) and access it.
+
+### Development enviroment
+
+1. [Install Android Studio](https://developer.android.com/studio/)
+2. Clone the repository
+3. Open Android Studio
+4. Select "Import Project (Gradle, Eclipse ADT, etc.)"
+5. On path select PATH_WHERE_YOU_CLONED_THE_REPOSITORY_TO\BuggedMatrix (it will look someting like ...\BuggedMatrix\BuggedMatrix\) and hit ok
+6. To run the android version, just go to Run->Run.. , select Android, connect an Android (where developer mode and run degub mode are active) or create a Virtual device, and the game will run.
+7. To run the desktop version, select DesktopLauncher class, go to Run->Edit Configurations.., change Working Directory to ...\BuggedMatrix\BuggedMatrix\android\assets and the Run->Run.. and select DesktopLauncher.
+8. To run the test, just go to a test class, a green circle should appear on the left of each function, click it and then click tun test. (Altough it is possible to run multiple tests at the same time, some will fail if done so (as we used SINGLETON, some test function will interfere with the others, so to get correct test results, only one funcion should be run at a time)).
+
+
 ## Architecture Design
 
 ### Package and class diagram
