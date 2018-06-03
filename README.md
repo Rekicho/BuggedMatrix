@@ -136,7 +136,9 @@ AI:
 - (Online) Testing if both player have responses in reasonable time and that we are able to sync them
 
 ### User Manual
-1. Touch screen to begin.
+
+1. 
+Touch screen to begin.
 ![MainScren](https://imgur.com/oAn6Olm.png)
 
 2.
@@ -152,4 +154,8 @@ Use the joysticks and the buttons to move and shoot.
 
 3.
 Shoot the other player 3 times to win.
-![EndGame](https://imgur.com/cF6eqXz.png)
+![RedWon](https://i.imgur.com/5FAcGo7.png)
+![BlueWon](https://imgur.com/cF6eqXz.png)
+
+4. 
+Touch screen again to go back to Main Menu.
