@@ -21,23 +21,11 @@ To run the HTML version, put all the files in BuggedMatrix-HTML on a web server 
 8. To run the test, just go to a test class, a green circle should appear on the left of each function, click it and then click tun test. (Altough it is possible to run multiple tests at the same time, some will fail if done so (as we used SINGLETON, some test function will interfere with the others, so to get correct test results, only one funcion should be run at a time)).
 
 
-## Architecture Design
+## Development documentation
 
 ### Package and class diagram
 
-![UML](https://i.imgur.com/wKLChXX.png)
-
-View: Displays information to the user. Has all menus and view from all entities.
-
-Model: Game rules and logic. It's how the game is played. Contatints the game model and all entities models.
-
-Controller: Interprets the user commands. Seperated into the game controller and different entities controllers.
-
-Networking: Will be used for online multiplayer.
-
-AI: AI decision making. Will output commands to the game controller as if it was a 2nd player.
-
-Test: Using the tests and structure described in **Test Design**.
+![UML](https://i.imgur.com/xdM2srC.png)
 
 ### Behavioural Aspects
 
