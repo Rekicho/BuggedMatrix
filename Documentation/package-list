@@ -1,0 +1,8 @@
+com.buggedmatrix.game
+com.buggedmatrix.game.controller
+com.buggedmatrix.game.controller.entities
+com.buggedmatrix.game.model
+com.buggedmatrix.game.model.entities
+com.buggedmatrix.game.screens
+com.buggedmatrix.game.view
+com.buggedmatrix.game.view.entities
