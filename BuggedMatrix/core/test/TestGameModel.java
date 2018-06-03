@@ -1,4 +1,5 @@
 import com.buggedmatrix.game.model.GameModel;
+import com.buggedmatrix.game.model.entities.EntityModel;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -67,5 +68,43 @@ public class TestGameModel {
         GameModel.reset();
         assertEquals(0, GameModel.getPlayerOneScore());
         assertEquals(0, GameModel.getPlayerTwoScore());
+    }
+
+    @Test
+    public void testPlayerMembers()
+    {
+        assertNotNull(GameModel.getInstance().getPlayerOne());
+        assertEquals(EntityModel.ModelType.PLAYER,GameModel.getInstance().getPlayerOne().getType());
+        assertNotNull(GameModel.getInstance().getPlayerOne().getHead());
+        assertEquals(EntityModel.ModelType.HEAD1,GameModel.getInstance().getPlayerOne().getHead().getType());
+        assertNotNull(GameModel.getInstance().getPlayerOne().getChest());
+        assertEquals(EntityModel.ModelType.CHEST1,GameModel.getInstance().getPlayerOne().getChest().getType());
+        assertNotNull(GameModel.getInstance().getPlayerOne().getLeftarm());
+        assertEquals(EntityModel.ModelType.ARM1,GameModel.getInstance().getPlayerOne().getLeftarm().getType());
+        assertNotNull(GameModel.getInstance().getPlayerOne().getRightarm());
+        assertEquals(EntityModel.ModelType.ARM1,GameModel.getInstance().getPlayerOne().getRightarm().getType());
+        assertNotNull(GameModel.getInstance().getPlayerOne().getLeftleg());
+        assertEquals(EntityModel.ModelType.LEG1,GameModel.getInstance().getPlayerOne().getLeftleg().getType());
+        assertNotNull(GameModel.getInstance().getPlayerOne().getRightleg());
+        assertEquals(EntityModel.ModelType.LEG1,GameModel.getInstance().getPlayerOne().getRightleg().getType());
+        assertNotNull(GameModel.getInstance().getPlayerOne().getGun());
+        assertEquals(EntityModel.ModelType.GUN,GameModel.getInstance().getPlayerOne().getGun().getType());
+
+        assertNotNull(GameModel.getInstance().getPlayerTwo());
+        assertEquals(EntityModel.ModelType.PLAYER,GameModel.getInstance().getPlayerTwo().getType());
+        assertNotNull(GameModel.getInstance().getPlayerTwo().getHead());
+        assertEquals(EntityModel.ModelType.HEAD2,GameModel.getInstance().getPlayerTwo().getHead().getType());
+        assertNotNull(GameModel.getInstance().getPlayerTwo().getChest());
+        assertEquals(EntityModel.ModelType.CHEST2,GameModel.getInstance().getPlayerTwo().getChest().getType());
+        assertNotNull(GameModel.getInstance().getPlayerTwo().getLeftarm());
+        assertEquals(EntityModel.ModelType.ARM2,GameModel.getInstance().getPlayerTwo().getLeftarm().getType());
+        assertNotNull(GameModel.getInstance().getPlayerTwo().getRightarm());
+        assertEquals(EntityModel.ModelType.ARM2,GameModel.getInstance().getPlayerTwo().getRightarm().getType());
+        assertNotNull(GameModel.getInstance().getPlayerTwo().getLeftleg());
+        assertEquals(EntityModel.ModelType.LEG2,GameModel.getInstance().getPlayerTwo().getLeftleg().getType());
+        assertNotNull(GameModel.getInstance().getPlayerTwo().getRightleg());
+        assertEquals(EntityModel.ModelType.LEG2,GameModel.getInstance().getPlayerTwo().getRightleg().getType());
+        assertNotNull(GameModel.getInstance().getPlayerTwo().getGun());
+        assertEquals(EntityModel.ModelType.GUN,GameModel.getInstance().getPlayerTwo().getGun().getType());
     }
 }

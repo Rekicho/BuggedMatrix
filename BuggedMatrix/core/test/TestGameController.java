@@ -1,3 +1,4 @@
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -5,12 +6,13 @@ import com.badlogic.gdx.utils.Array;
 import com.buggedmatrix.game.controller.GameController;
 import com.buggedmatrix.game.model.GameModel;
 import com.buggedmatrix.game.model.entities.EntityModel;
+import com.buggedmatrix.game.model.entities.MemberModel;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.swing.text.html.parser.Entity;
+import java.util.Random;
 
 @RunWith(GdxTestRunner.class)
 public class TestGameController {
@@ -102,5 +104,127 @@ public class TestGameController {
                 playerTwoTime = true;
             }
         }
+    }
+
+    @Test
+    public void testControls()
+    {
+        Array<Body> bodies = new Array<Body>();
+        GameController.getInstance().getWorld().getBodies(bodies);
+
+        GameController.getInstance().getPlayerOne().applyForce(0, 2500);
+        GameController.getInstance().update(0.1f);
+
+        for(Body body: bodies)
+            if(body.getUserData() instanceof MemberModel && body.getUserData() == GameModel.getInstance().getPlayerOne().getChest())
+                assertTrue(body.getLinearVelocity().y > 0);
+
+        GameController.getInstance().getPlayerOne().applyForce(2500, 0);
+        GameController.getInstance().update(0.1f);
+
+        for(Body body: bodies)
+            if(body.getUserData() instanceof MemberModel && body.getUserData() == GameModel.getInstance().getPlayerOne().getChest())
+                assertTrue(body.getLinearVelocity().x > 0);
+
+        GameController.getInstance().getPlayerTwo().applyForce(0, -2500);
+        GameController.getInstance().update(0.1f);
+
+        for(Body body: bodies)
+            if(body.getUserData() instanceof MemberModel && body.getUserData() == GameModel.getInstance().getPlayerTwo().getChest())
+                assertTrue(body.getLinearVelocity().y < 0);
+
+        GameController.getInstance().getPlayerTwo().applyForce(-2500, 0);
+        GameController.getInstance().update(0.1f);
+
+        for(Body body: bodies)
+            if(body.getUserData() instanceof MemberModel && body.getUserData() == GameModel.getInstance().getPlayerTwo().getChest())
+                assertTrue(body.getLinearVelocity().x < 0);
+    }
+
+    @Test
+    public void testWalls()
+    {
+        Random rng = new Random();
+        int decision;
+
+        Array<Body> bodies = new Array<Body>();
+        GameController.getInstance().getWorld().getBodies(bodies);
+
+        for(int i = 0; i < 1000; i++)
+        {
+            decision = rng.nextInt(4);
+            switch(decision)
+            {
+                case 0: GameController.getInstance().getPlayerOne().applyForce(0, 2500);
+                case 1: GameController.getInstance().getPlayerOne().applyForce(0, -2500);
+                case 2: GameController.getInstance().getPlayerOne().applyForce(2500, 0);
+                case 3: GameController.getInstance().getPlayerOne().applyForce(-2500, 0);
+            }
+
+            GameController.getInstance().update(1f);
+
+            for(Body body: bodies)
+                if(body.getUserData() instanceof MemberModel) {
+                    assertTrue(body.getPosition().x >= 0);
+                    assertTrue(body.getPosition().x <= 100);
+                    assertTrue(body.getPosition().y >= -700);
+                    assertTrue(body.getPosition().y <= 50);
+                }
+        }
+    }
+
+    @Test
+    public void testBulletKill()
+    {
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("shoot.mp3"));
+        Random rng = new Random();
+
+        boolean kill = false;
+        int decision;
+
+        while(!kill)
+        {
+            decision = rng.nextInt(4);
+
+            switch (decision)
+            {
+                case 0: GameController.getInstance().getPlayerOne().applyForce(0, 2500);
+                case 1: GameController.getInstance().getPlayerOne().applyForce(0, -2500);
+                case 2: GameController.getInstance().getPlayerOne().applyForce(2500, 0);
+                case 3: GameController.getInstance().getPlayerOne().applyForce(-2500, 0);
+            }
+
+            decision = rng.nextInt(4);
+
+            switch (decision)
+            {
+                case 0: GameController.getInstance().getPlayerTwo().applyForce(0, 2500);
+                case 1: GameController.getInstance().getPlayerTwo().applyForce(0, -2500);
+                case 2: GameController.getInstance().getPlayerTwo().applyForce(2500, 0);
+                case 3: GameController.getInstance().getPlayerTwo().applyForce(-2500, 0);
+            }
+
+            GameController.getInstance().PlayerOneShoot(sound);
+            GameController.getInstance().PlayerTwoShoot(sound);
+
+            GameController.getInstance().update(Gdx.graphics.getDeltaTime());
+
+            if(GameModel.getInstance().needsReset())
+                kill = true;
+        }
+
+        assertTrue(kill);
+    }
+
+    @Test
+    public void testBulletAnglePosition()
+    {
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("shoot.mp3"));
+        GameController.getInstance().update(3f);
+        GameController.getInstance().PlayerOneShoot(sound);
+        assertEquals((int) GameModel.getInstance().getPlayerOne().getGun().getX(), (int) GameModel.getInstance().getPlayerOneBullet().getX());
+        assertEquals((int) GameModel.getInstance().getPlayerOne().getGun().getY(), (int) GameModel.getInstance().getPlayerOneBullet().getY());
+        assertEquals((int) GameModel.getInstance().getPlayerOne().getGun().getRotation(), (int) GameModel.getInstance().getPlayerOneBullet().getRotation());
+
     }
 }
