@@ -23,15 +23,13 @@ To run the HTML version, put all the files in BuggedMatrix-HTML on a web server 
 
 ## Development documentation
 
-### Package and class diagram
+### Class diagram
 
 ![UML](https://i.imgur.com/xdM2srC.png)
 
-### Behavioural Aspects
+### State diagram
 
-![Game Cycle](https://i.imgur.com/BCBk0j0.png)
-
-How the game/application will run
+![Game Cycle](https://i.imgur.com/IygnOsc.png)
 
 ### Design Patterns
 
