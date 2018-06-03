@@ -65,7 +65,35 @@ Used in: View Entity Package
 
 Code has higer abstraction and allows to easily create and implement new views, as well as change those already created.
 
-### User Manual
+### Major dificulties
+
+- Getting what was happening in the game world (Box2D) to match what was being shown to the player (getting units right, game withd and height, joystick input ...).
+- Modelling the player as a set of bodies and joints (and not just one body)
+- Overall, libgdx has so many features that is easy to get lost on what we need to use
+- Also, it's documentation was sometimes lacking, not explaning what some parameters meant
+
+### Lessons learned
+
+- Plan small and expand if we have time. We started wanting a lot of features, but then as we didn't have time started giving up some of them.
+- Do the boring work first, so we have motivation to keep working.
+
+### Overal Time Spent Developing
+
+~50 hours each member.
+
+### Work Distribution
+
+Equal between the two of us.
+
+### Other notes
+
+- Due to the use of Singleton design pattern, all the test functions should be tested separately, or GameController.reset() should be called between them, so that the instance of the game changes.
+- The project was based on teacher Restivo's AsteroidArena game, so the structure is a lot similar.
+- We weren't being able to use Junit with AndroidStudio and Libgdx, so we had to use an "test runner" from another repository.
+- The test runner is GdxTestRunner.java and it's repo is [this](https://github.com/TomGrill/gdx-testing).
+
+
+## User Manual
 
 1. 
 Touch screen to begin.
