@@ -225,6 +225,5 @@ public class TestGameController {
         assertEquals((int) GameModel.getInstance().getPlayerOne().getGun().getX(), (int) GameModel.getInstance().getPlayerOneBullet().getX());
         assertEquals((int) GameModel.getInstance().getPlayerOne().getGun().getY(), (int) GameModel.getInstance().getPlayerOneBullet().getY());
         assertEquals((int) GameModel.getInstance().getPlayerOne().getGun().getRotation(), (int) GameModel.getInstance().getPlayerOneBullet().getRotation());
-
     }
 }

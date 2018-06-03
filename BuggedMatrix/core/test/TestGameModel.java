@@ -1,6 +1,7 @@
 import com.buggedmatrix.game.model.GameModel;
 import com.buggedmatrix.game.model.entities.EntityModel;
 
+import static com.buggedmatrix.game.model.entities.BulletModel.MAX_BOUNCES;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -106,5 +107,16 @@ public class TestGameModel {
         assertEquals(EntityModel.ModelType.LEG2,GameModel.getInstance().getPlayerTwo().getRightleg().getType());
         assertNotNull(GameModel.getInstance().getPlayerTwo().getGun());
         assertEquals(EntityModel.ModelType.GUN,GameModel.getInstance().getPlayerTwo().getGun().getType());
+    }
+
+    @Test
+    public void testBulletBounce()
+    {
+        assertFalse(GameModel.getInstance().getPlayerOneBullet().isFlaggedForRemoval());
+
+        for(int bounces = 0; bounces <= MAX_BOUNCES; bounces++)
+            GameModel.getInstance().getPlayerOneBullet().bounce();
+
+        assertTrue(GameModel.getInstance().getPlayerOneBullet().isFlaggedForRemoval());
     }
 }

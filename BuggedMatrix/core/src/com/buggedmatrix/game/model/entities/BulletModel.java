@@ -8,7 +8,7 @@ public class BulletModel extends EntityModel {
     /**
      * Constant of maximum bounces
      */
-    static final private int MAX_BOUNCES = 1;
+    static final public int MAX_BOUNCES = 1;
 
     /**
      * Bullet direction
